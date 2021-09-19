@@ -15,7 +15,7 @@ const App = () => {
   useEffect(() => {
 
     if(!localStorage.getItem('books')){
-      fetch("https://raw.githubusercontent.com/vonweinKeller/vorwarts/main/books.json?token=AVUJBLUUTZVAR4LV4NPIMV3BI22QU")
+      fetch("https://raw.githubusercontent.com/vonweinKeller/vorwarts-library/main/books.json")
       .then(res => res.json())
       .then((data) => {
         localStorage.setItem('books', JSON.stringify(data))
