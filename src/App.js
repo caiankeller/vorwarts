@@ -12,19 +12,16 @@ const App = () => {
 
   const [books, setBooks] = useState('')
 
-  useEffect(() => {
-
-    if(!localStorage.getItem('books')){
-      fetch("https://raw.githubusercontent.com/vonweinKeller/vorwarts-library/main/books.json")
-      .then(res => res.json())
+    const getting = async() => { await fetch(
+      "https://raw.githubusercontent.com/vonweinKeller/vorwarts-library/main/books.json"
+    )
+      .then((res) => res.json())
       .then((data) => {
-        localStorage.setItem('books', JSON.stringify(data))
-        setBooks(data)
-      })
+        localStorage.setItem("books", JSON.stringify(data));
+      });
     }
 
-
-  }, [])
+    getting()
 
   return (
     <Router>
