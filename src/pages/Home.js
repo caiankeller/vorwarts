@@ -17,7 +17,7 @@ const Container = styled.div`
   border-radius: 10px;
   padding: 1rem;
 
-  @media(max-width: 1134px) {
+  @media (max-width: 1134px) {
     display: flex;
     flex-direction: column;
   }
@@ -45,6 +45,11 @@ const About = styled.div`
     text-align: justify;
     line-height: 1.3rem;
     letter-spacing: 0.1rem;
+
+    @media (max-width: 642px) {
+        line-height: 1rem;
+        letter-spacing: 0;
+      }
   }
 `;
 
@@ -53,7 +58,7 @@ const Control = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 1rem;
-  height: 400px;
+  height: 2rem;
   border-radius: 10px;
   background-color: #fff38e;
   box-shadow: #fff38ea1;
@@ -94,7 +99,7 @@ const Home = () => {
           </About>
 
           <Control>
-            <input></input>
+            <h6>hi</h6>
           </Control>
         </LeftPanel>
         <Books>
@@ -103,7 +108,7 @@ const Home = () => {
           })}
         </Books>
       </Container>
-      <br/>
+      <br />
     </>
   );
 };

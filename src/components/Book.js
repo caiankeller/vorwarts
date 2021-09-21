@@ -12,6 +12,10 @@ const Container = styled.div`
   margin-bottom: 1rem;
   color: white;
   padding: 1rem;
+
+  @media (max-width: 430px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const ContainerCover = styled.div`
@@ -61,12 +65,20 @@ const Link = styled.button`
   padding-right: 0.9rem;
 `;
 
+const Aspect = styled.div`
+  margin: 0;
+`
+
 const Links = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: center;
   margin-top: 2rem;
+
+  @media (max-width: 430px) {
+    margin-top: 1rem;
+  }
 `;
 
 const Book = ({ book }) => {
@@ -77,10 +89,12 @@ const Book = ({ book }) => {
       </ContainerCover>
 
       <Info>
-        <span>{book.name}</span>
-        <Autor>
-          {book.autor}, {book.year}
-        </Autor>
+        <Aspect>
+          <span>{book.name}</span>
+          <Autor>
+            {book.autor}, {book.year}
+          </Autor>
+        </Aspect>
 
         <Links>
           <Link
@@ -92,7 +106,7 @@ const Book = ({ book }) => {
             onClick={() => (window.location.href = `/book/${book.name}`)}
             alt="its free"
           >
-            go to book <VscArrowSmallRight></VscArrowSmallRight>
+            go to book <VscArrowSmallRight size="1rem"></VscArrowSmallRight>
           </Link>
         </Links>
       </Info>

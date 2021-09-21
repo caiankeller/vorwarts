@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { VscGithubInverted } from "react-icons/vsc";
+import { VscGithubInverted, VscMenu, VscChromeClose } from "react-icons/vsc";
+import { useState } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -18,13 +19,16 @@ const Container = styled.div`
   }
 
   @media (max-width: 513px) {
+    font-size: 2rem;
+    padding: 1rem;
+
     img {
       width: 100px;
       height: 100px;
     }
 
-    div {
-      padding: 1.5rem;
+    span {
+      font-size: 2rem;
     }
   }
 `;
@@ -34,17 +38,31 @@ const Title = styled.span`
   color: rgb(10, 10, 10);
   font-weight: bolder;
   color: #242424;
-  font-family: 'Bebas Neue', cursive;
+  font-family: "Bebas Neue", cursive;
 `;
 
 const Buttons = styled.div`
   display: flex;
+  z-index: 2;
+  top: 6rem;
+  right: 2rem;
+  position: ${(props) => (props.active ? "absolute" : "")};
+  flex-direction: ${(props) => (props.active ? "column" : "")};
+  background: ${(props) => (props.active ? '#fff38e': '')};
   justify-content: center;
   align-items: center;
   font-size: 1rem;
   border-radius: 10px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 
   button {
+    z-index: 3;
+    margin-top: ${(props) => (props.active ? "0.5rem" : "")};
+    margin-bottom: ${(props) => (props.active ? "0.5rem" : "")};
+    width: ${(props) => (props.active ? "100%" : "")};
     padding: 0.6rem;
     border-radius: 10px;
     font-size: 1rem;
@@ -55,17 +73,44 @@ const Buttons = styled.div`
     font-weight: bolder;
   }
 
-  @media(max-width: 1000px) {
+  @media (max-width: 1000px) {
+    display: ${(props) => (props.active ? "" : "none")};
+  }
+`;
+
+const Toggle = styled.button`
+  display: block;
+  height: 3rem;
+  padding: 0.6rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  background-color: #242424;
+  color: white;
+  font-weight: bolder;
+  @media (min-width: 1000px) {
     display: none;
   }
 `;
 
 const Header = () => {
+  const [toggleOn, setToggleOn] = useState(true);
+
+  const toggling = () => {
+    setToggleOn(!toggleOn);
+  };
+
   return (
     <Container as={motion.div} initial="hidden" animate="visible">
       <Title>Vorwärts</Title>
-      <Buttons>
-        <button>GitHub<VscGithubInverted color='#fff38e'></VscGithubInverted></button>
+      <Toggle onClick={toggling}>
+        {!toggleOn ? <VscMenu /> : <VscChromeClose />}
+      </Toggle>
+      <Buttons active={toggleOn}>
+        <button>
+          GitHub<VscGithubInverted color="#fff38e"></VscGithubInverted>
+        </button>
         <button>Acknowledgment</button>
         <button>Contact</button>
         <button>What's Vorwärts</button>
