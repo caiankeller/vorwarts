@@ -1,17 +1,14 @@
-import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useParams } from "react-router-dom";
 
 const Book = () => {
-    const {book} = useParams()
-    const [bookname, setBook] = useState(book)
+  const { book } = useParams();
 
-    return(
-        <h1>
-            {bookname}
-        </h1>
-    )
+  return (
+    <h1>
+      {book}
 
+    </h1>
+  );
+};
 
-}
-
-export default Book
+export default Book;

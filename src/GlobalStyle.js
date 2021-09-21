@@ -1,6 +1,12 @@
 import {createGlobalStyle} from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+
+    *{
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+    }
+
     html{
         height: 100%;
     }
@@ -10,10 +16,17 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
+        box-sizing: border-box;
         height: 100%;
-        background-color: #0a0a0a;
+        background: #242424;
         padding: .5rem;
-        font-family: 'Helvetica Neue', Arial, sans-serif;
+        padding-left: 12rem;
+        padding-right: 12rem;
+        font-family: 'Roboto', sans-serif;
+
+        @media(max-width:1112px) {
+        padding: 0rem;
+    }
     }
 `
 
