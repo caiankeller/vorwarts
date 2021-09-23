@@ -104,7 +104,6 @@ const Book = ({ book }) => {
             onHoverEnd={(e) => {}}
             whileTap={{ scale: 0.9 }}
             onClick={() => (window.location.href = `/book/${book.name}`)}
-            alt="its free"
           >
             go to book <VscArrowSmallRight size="1rem"></VscArrowSmallRight>
           </Link>

@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { motion } from "framer-motion";
 import { VscGithubInverted, VscMenu, VscChromeClose } from "react-icons/vsc";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -28,6 +27,9 @@ const Container = styled.div`
     }
 
     span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-size: 2rem;
     }
   }
@@ -48,7 +50,7 @@ const Buttons = styled.div`
   right: 2rem;
   position: ${(props) => (props.active ? "absolute" : "")};
   flex-direction: ${(props) => (props.active ? "column" : "")};
-  background: ${(props) => (props.active ? '#fff38e': '')};
+  background: ${(props) => (props.active ? "#fff38e" : "")};
   justify-content: center;
   align-items: center;
   font-size: 1rem;
@@ -73,7 +75,7 @@ const Buttons = styled.div`
     font-weight: bolder;
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 999px) {
     display: ${(props) => (props.active ? "" : "none")};
   }
 `;
@@ -95,19 +97,33 @@ const Toggle = styled.button`
 `;
 
 const Header = () => {
-  const [toggleOn, setToggleOn] = useState(true);
+  const [toggleOn, setToggleOn] = useState(false);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
 
   const toggling = () => {
     setToggleOn(!toggleOn);
   };
 
+  const getSize = () => {
+    setWindowSize(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", getSize);
+    windowSize > "1000" ? setToggleOn(false) : console.log("i love my mom");
+  }, [windowSize]);
+
   return (
-    <Container as={motion.div} initial="hidden" animate="visible">
+    <Container>
       <Title>Vorwärts</Title>
       <Toggle onClick={toggling}>
         {!toggleOn ? <VscMenu /> : <VscChromeClose />}
       </Toggle>
-      <Buttons active={toggleOn}>
+      <Buttons as='motion.div'
+        active={toggleOn}
+        animate={{ scale: 3 }}
+        transition={{ duration: 0.25 }}
+      >
         <button>
           GitHub<VscGithubInverted color="#fff38e"></VscGithubInverted>
         </button>

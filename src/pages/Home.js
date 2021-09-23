@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Book from "../components/Book";
+import { AiFillHeart } from "react-icons/ai";
+import { GiPortugal } from "react-icons/gi";
 import axios from "axios";
 
 import { useState, useEffect } from "react";
@@ -10,12 +12,12 @@ const Container = styled.div`
   grid-template-rows: 1 3;
   grid-gap: 1rem;
   margin-top: 1rem;
-  margin-bottom: 1rem;
   width: 100%;
   background: linear-gradient(180deg, #e23c52, #e23c52a1);
   box-shadow: 0 0 20px #e23c52a1;
   border-radius: 10px;
   padding: 1rem;
+  padding-bottom: 0;
 
   @media (max-width: 1134px) {
     display: flex;
@@ -39,39 +41,127 @@ const About = styled.div`
 
   p {
     display: block;
-    margin-top: 0.5rem;
+    margin-top: 0.2rem;
     text-indent: 2rem;
     color: #fafafa;
     text-align: justify;
-    line-height: 1.3rem;
-    letter-spacing: 0.1rem;
-
-    @media (max-width: 642px) {
-        line-height: 1rem;
-        letter-spacing: 0;
-      }
   }
 `;
 
-const Control = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-  height: 2rem;
-  border-radius: 10px;
-  background-color: #fff38e;
-  box-shadow: #fff38ea1;
-
-  input {
-    width: 70%;
-  }
+const MadeBy = styled.div`
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  font-weight: bolder;
 `;
 
 const Books = styled.div``;
 
+const Skeleton = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  width: 100%;
+
+  height: 12rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  color: white;
+  padding: 1rem;
+  background-image: linear-gradient(#bfbfbf, #bfbfbfa1);
+
+  @media (max-width: 430px) {
+    grid-template-columns: 1fr;
+    height: 18rem;
+  }
+`;
+
+const SkeletonCover = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .skeletonCover {
+    border-radius: 10px;
+    background-color: #242424;
+    height: 150px;
+    width: 100px;
+  }
+`;
+
+const SkeletonContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .skeletonContent {
+    border-radius: 10px;
+    height: 2rem;
+    width: 100%;
+    margin: 1rem;
+    background-color: #242424;
+  }
+`;
+
+const SkeletonCard = () => {
+  return (
+    <>
+      <Skeleton>
+        <SkeletonCover>
+          <div className="skeletonCover"></div>
+        </SkeletonCover>
+        <SkeletonContent>
+          <div className="skeletonContent" />
+          <div className="skeletonContent" />
+        </SkeletonContent>
+      </Skeleton>
+
+      <Skeleton>
+        <SkeletonCover>
+          <div className="skeletonCover"></div>
+        </SkeletonCover>
+        <SkeletonContent>
+          <div className="skeletonContent" />
+          <div className="skeletonContent" />
+        </SkeletonContent>
+      </Skeleton>
+
+      <Skeleton>
+        <SkeletonCover>
+          <div className="skeletonCover"></div>
+        </SkeletonCover>
+        <SkeletonContent>
+          <div className="skeletonContent" />
+          <div className="skeletonContent" />
+        </SkeletonContent>
+      </Skeleton>
+
+      <Skeleton>
+        <SkeletonCover>
+          <div className="skeletonCover"></div>
+        </SkeletonCover>
+        <SkeletonContent>
+          <div className="skeletonContent" />
+          <div className="skeletonContent" />
+        </SkeletonContent>
+      </Skeleton>
+
+      <Skeleton>
+        <SkeletonCover>
+          <div className="skeletonCover"></div>
+        </SkeletonCover>
+        <SkeletonContent>
+          <div className="skeletonContent" />
+          <div className="skeletonContent" />
+        </SkeletonContent>
+      </Skeleton>
+    </>
+  );
+};
+
 const Home = () => {
   const [books, setBooks] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -80,6 +170,7 @@ const Home = () => {
       )
       .then((res) => {
         setBooks(res.data);
+        setLoading(!isLoading);
       });
   }, []);
 
@@ -92,17 +183,19 @@ const Home = () => {
           <About>
             <span>Disclaimer</span>
             <p>
-              Check the public domain status of each book in your country before
-              you get it. We do not endorse criminal acts. To request take down
-              content, please, e-mail caiankeller@icloud.com
+              These books are in the public domain in their country of origin
+              and are legally free to use. To avoid problems, you should check
+              the copyright laws in your country.
             </p>
+            <MadeBy>
+              Made with <AiFillHeart color="red" /> by{" "}
+              <GiPortugal color="green" size="1.5rem" title="Portugal" />
+            </MadeBy>
           </About>
-
-          <Control>
-            <h6>hi</h6>
-          </Control>
         </LeftPanel>
         <Books>
+          {isLoading ? <SkeletonCard /> : ""}
+
           {books.map((book, key) => {
             return <Book key={key} book={book} />;
           })}
