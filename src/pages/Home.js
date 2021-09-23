@@ -170,7 +170,7 @@ const Home = () => {
       )
       .then((res) => {
         setBooks(res.data);
-        setLoading(!isLoading);
+        setLoading(currentValue => !currentValue);
       });
   }, []);
 
