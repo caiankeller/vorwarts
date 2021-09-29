@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import Book from "../components/Book";
-import { AiFillHeart } from "react-icons/ai";
-import { GiPortugal } from "react-icons/gi";
 import axios from "axios";
 
 import { useState, useEffect } from "react";
@@ -46,13 +44,6 @@ const About = styled.div`
     color: #fafafa;
     text-align: justify;
   }
-`;
-
-const MadeBy = styled.div`
-  font-size: 1rem;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
-  font-weight: bolder;
 `;
 
 const Books = styled.div``;
@@ -174,8 +165,6 @@ const Home = () => {
       });
   }, []);
 
-  console.log(books);
-
   return (
     <>
       <Container>
@@ -187,17 +176,13 @@ const Home = () => {
               and are legally free to use. To avoid problems, you should check
               the copyright laws in your country.
             </p>
-            <MadeBy>
-              Made with <AiFillHeart color="red" /> by{" "}
-              <GiPortugal color="green" size="1.5rem" title="Portugal" />
-            </MadeBy>
           </About>
         </LeftPanel>
         <Books>
           {isLoading ? <SkeletonCard /> : ""}
 
-          {books.map((book, key) => {
-            return <Book key={key} book={book} />;
+          {books.map((book) => {
+            return <Book key={book.id} book={book} />;
           })}
         </Books>
       </Container>

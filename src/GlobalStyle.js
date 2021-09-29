@@ -24,6 +24,16 @@ const GlobalStyle = createGlobalStyle`
         padding-right: 12rem;
         font-family: 'Roboto', sans-serif;
 
+        @media(max-width: 1700px){
+            padding-left: 9rem;
+            padding-right: 9rem;
+        }
+
+        @media(max-width: 1545px) {
+            padding-left: 6rem;
+            padding-right: 6rem;
+        }
+
         @media(max-width:1412px) {
         padding: 0rem;
     }

@@ -119,11 +119,7 @@ const Header = () => {
       <Toggle onClick={toggling}>
         {!toggleOn ? <VscMenu /> : <VscChromeClose />}
       </Toggle>
-      <Buttons as='motion.div'
-        active={toggleOn}
-        animate={{ scale: 3 }}
-        transition={{ duration: 0.25 }}
-      >
+      <Buttons active={toggleOn}>
         <button>
           GitHub<VscGithubInverted color="#fff38e"></VscGithubInverted>
         </button>

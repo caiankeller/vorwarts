@@ -38,7 +38,6 @@ const Info = styled.div`
   font-size: 1.7rem;
 
   span {
-    text-transform: capitalize;
     font-family: "Bebas Neue", cursive;
   }
 `;
@@ -85,14 +84,14 @@ const Book = ({ book }) => {
   return (
     <Container>
       <ContainerCover>
-        <Cover src={book.cover} />
+        <Cover src={book.cover_url_hd} />
       </ContainerCover>
 
       <Info>
         <Aspect>
-          <span>{book.name}</span>
+          <span>{book.title}</span>
           <Autor>
-            {book.autor}, {book.year}
+            {book.author}, {book.first_publishment}
           </Autor>
         </Aspect>
 
@@ -103,7 +102,7 @@ const Book = ({ book }) => {
             onHoverStart={(e) => {}}
             onHoverEnd={(e) => {}}
             whileTap={{ scale: 0.9 }}
-            onClick={() => (window.location.href = `/book/${book.name}`)}
+            onClick={() => (window.location.href = `/book/${book.id}`)}
           >
             go to book <VscArrowSmallRight size="1rem"></VscArrowSmallRight>
           </Link>
