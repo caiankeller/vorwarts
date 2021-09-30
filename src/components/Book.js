@@ -84,7 +84,7 @@ const Book = ({ book }) => {
   return (
     <Container>
       <ContainerCover>
-        <Cover src={book.cover_url_hd} />
+        <Cover src={book.cover_url_md} />
       </ContainerCover>
 
       <Info>
