@@ -1,6 +1,52 @@
 import styled from "styled-components";
 import { VscGithubInverted, VscMenu, VscChromeClose } from "react-icons/vsc";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+const Header = () => {
+
+  const [url, setUrl] = useState('')
+  const [toggleOn, setToggleOn] = useState(false)
+  const [windowSize, setWindowSize] = useState(window.innerWidth)
+
+  let getUrl = useLocation()
+
+  useEffect(() => {
+    setUrl(getUrl)
+  }, [getUrl])
+
+  const toggling = () => {
+    setToggleOn(!toggleOn);
+  };
+
+  const getSize = () => {
+    setWindowSize(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", getSize);
+    windowSize > "1000" ? setToggleOn(false) : console.log("i love my mom");
+  }, [windowSize]);
+
+  return (
+    <Container>
+      <Title onClick={() => url.pathname === '/' ? console.log("BLOCKED") : (window.location.href = '/')}>Vorwärts</Title>
+      <Toggle onClick={toggling}>
+        {!toggleOn ? <VscMenu /> : <VscChromeClose />}
+      </Toggle>
+      <Buttons active={toggleOn}>
+        <button>
+          GitHub<VscGithubInverted color="#fff38e"></VscGithubInverted>
+        </button>
+        <button>Acknowledgment</button>
+        <button>Contact</button>
+        <button onClick={() => (window.location.href = '/about')}>What's Vorwärts</button>
+      </Buttons>
+    </Container>
+  );
+};
+
+export default Header;
 
 const Container = styled.div`
   display: flex;
@@ -41,6 +87,7 @@ const Title = styled.span`
   font-weight: bolder;
   color: #242424;
   font-family: "Bebas Neue", cursive;
+  cursor: pointer;
 `;
 
 const Buttons = styled.div`
@@ -73,6 +120,7 @@ const Buttons = styled.div`
     background-color: #242424;
     color: white;
     font-weight: bolder;
+    cursor: pointer;
   }
 
   @media (max-width: 999px) {
@@ -95,40 +143,3 @@ const Toggle = styled.button`
     display: none;
   }
 `;
-
-const Header = () => {
-  const [toggleOn, setToggleOn] = useState(false);
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
-
-  const toggling = () => {
-    setToggleOn(!toggleOn);
-  };
-
-  const getSize = () => {
-    setWindowSize(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", getSize);
-    windowSize > "1000" ? setToggleOn(false) : console.log("i love my mom");
-  }, [windowSize]);
-
-  return (
-    <Container>
-      <Title>Vorwärts</Title>
-      <Toggle onClick={toggling}>
-        {!toggleOn ? <VscMenu /> : <VscChromeClose />}
-      </Toggle>
-      <Buttons active={toggleOn}>
-        <button>
-          GitHub<VscGithubInverted color="#fff38e"></VscGithubInverted>
-        </button>
-        <button>Acknowledgment</button>
-        <button>Contact</button>
-        <button>What's Vorwärts</button>
-      </Buttons>
-    </Container>
-  );
-};
-
-export default Header;

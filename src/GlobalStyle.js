@@ -23,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
         padding-left: 12rem;
         padding-right: 12rem;
         font-family: 'Roboto', sans-serif;
+        cursor: default;
 
         @media(max-width: 1700px){
             padding-left: 9rem;

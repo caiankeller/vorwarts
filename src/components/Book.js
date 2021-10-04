@@ -2,6 +2,40 @@ import styled from "styled-components";
 import { VscArrowSmallRight } from "react-icons/vsc";
 import { motion } from "framer-motion";
 
+const Book = ({ book }) => {
+  return (
+    <Container>
+      <ContainerCover>
+        <Cover src={book.cover_url_md} />
+      </ContainerCover>
+
+      <Info>
+        <Aspect>
+          <span>{book.title}</span>
+          <Autor>
+            {book.author}, {book.first_publishment}
+          </Autor>
+        </Aspect>
+
+        <Links>
+          <Link
+            as={motion.div}
+            whileHover={{ scale: 1.01 }}
+            onHoverStart={(e) => {}}
+            onHoverEnd={(e) => {}}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => (window.location.href = `/book/${book.title}`)}
+          >
+            go to book <VscArrowSmallRight size="1rem"></VscArrowSmallRight>
+          </Link>
+        </Links>
+      </Info>
+    </Container>
+  );
+};
+
+export default Book;
+
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 5fr;
@@ -62,11 +96,13 @@ const Link = styled.button`
   padding: 0.3rem;
   padding-left: 0.9rem;
   padding-right: 0.9rem;
+  cursor: pointer;
+  width: 100%;
 `;
 
 const Aspect = styled.div`
   margin: 0;
-`
+`;
 
 const Links = styled.div`
   width: 100%;
@@ -79,37 +115,3 @@ const Links = styled.div`
     margin-top: 1rem;
   }
 `;
-
-const Book = ({ book }) => {
-  return (
-    <Container>
-      <ContainerCover>
-        <Cover src={book.cover_url_md} />
-      </ContainerCover>
-
-      <Info>
-        <Aspect>
-          <span>{book.title}</span>
-          <Autor>
-            {book.author}, {book.first_publishment}
-          </Autor>
-        </Aspect>
-
-        <Links>
-          <Link
-            as={motion.div}
-            whileHover={{ scale: 1.1 }}
-            onHoverStart={(e) => {}}
-            onHoverEnd={(e) => {}}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => (window.location.href = `/book/${book.id}`)}
-          >
-            go to book <VscArrowSmallRight size="1rem"></VscArrowSmallRight>
-          </Link>
-        </Links>
-      </Info>
-    </Container>
-  );
-};
-
-export default Book;

@@ -51,6 +51,7 @@ const Books = styled.div``;
 const Skeleton = styled.div`
   display: grid;
   grid-template-columns: 1fr 5fr;
+  grid-gap: 1rem;
   width: 100%;
 
   height: 12rem;
