@@ -10,11 +10,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Book = () => {
-  const {title} = useParams();
+  const { title } = useParams();
 
   const [book, setBook] = useState([]);
   const [downloads, setDownloads] = useState([]);
-  const [genre, setGenre] = useState([])
+  const [genre, setGenre] = useState([]);
 
   useEffect(() => {
     const gettingBookInfo = () => {
@@ -26,12 +26,11 @@ const Book = () => {
           const bookSelect = res.data.filter((b) => b.title === title);
           setBook(bookSelect[0]);
           setDownloads(bookSelect[0].downloads_avaiable);
-          setGenre(bookSelect[0].genre)
+          setGenre(bookSelect[0].genre);
         });
     };
 
-  gettingBookInfo()
-
+    gettingBookInfo();
   }, [title]);
 
   return (
@@ -50,7 +49,13 @@ const Book = () => {
               </Autor>
             </Aspect>
 
-            <Genres>{genre.map((genre, key) => <span key={key} className="genre">{genre} </span>)}</Genres>
+            <Genres>
+              {genre.map((genre, key) => (
+                <span key={key} className="genre">
+                  {genre}{" "}
+                </span>
+              ))}
+            </Genres>
 
             <Wikipedia
               target="_blank"
@@ -117,7 +122,6 @@ const Book = () => {
 };
 
 export default Book;
-
 
 const Container = styled.div`
   padding: 1rem;

@@ -35,12 +35,12 @@ const Header = () => {
         {!toggleOn ? <VscMenu /> : <VscChromeClose />}
       </Toggle>
       <Buttons active={toggleOn}>
-        <button>
+        <button onClick={() => window.location.href="https://github.com/vonweinkeller/vorwarts"}>
           GitHub<VscGithubInverted color="#fff38e"></VscGithubInverted>
         </button>
-        <button>Acknowledgment</button>
+        <button onClick={() => url.pathname === '/about' ? console.log("BLOCKED") : (window.location.href = '/about')}>Acknowledgment</button>
         <button>Contact</button>
-        <button onClick={() => (window.location.href = '/about')}>What's Vorwärts</button>
+        <button onClick={() => url.pathname === '/about' ? console.log("BLOCKED") : (window.location.href = '/about')}>What's Vorwärts</button>
       </Buttons>
     </Container>
   );

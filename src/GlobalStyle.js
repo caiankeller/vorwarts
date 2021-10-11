@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
 
     *{
         box-sizing: border-box;
-        font-family: 'Roboto', sans-serif;
+         font-family: "Helvetica neue", "Roboto", sans-serif;
     }
 
     html{
@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
         padding: .5rem;
         padding-left: 12rem;
         padding-right: 12rem;
-        font-family: 'Roboto', sans-serif;
+         font-family: "Helvetica neue", "Roboto", sans-serif;
         cursor: default;
 
         @media(max-width: 1700px){

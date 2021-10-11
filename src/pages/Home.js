@@ -40,6 +40,7 @@ const About = styled.div`
   p {
     display: block;
     margin-top: 0.2rem;
+    margin-bottom: 0;
     text-indent: 2rem;
     color: #fafafa;
     text-align: justify;
