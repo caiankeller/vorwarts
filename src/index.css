@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+
+body,
+html,
+#root {
+  height: 100%;
+}
+
+* {
+  color: "#141414";
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
