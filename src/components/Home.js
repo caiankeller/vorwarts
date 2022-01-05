@@ -19,7 +19,14 @@ export default function Home() {
         Vorwärts is to maintain the neutrality of all these books written by
         incredible authors and which now belong to everyone.
       </Typography>
-      <Button variant="contained" style={{ marginTop: "1rem" }}>
+      <Button
+        variant="contained"
+        style={{ marginTop: "1rem" }}
+        onClick={() => {
+          window.location.href =
+            "https://github.com/vonweinkeller/vorwarts-library";
+        }}
+      >
         GitHub Library
       </Button>
     </Container>

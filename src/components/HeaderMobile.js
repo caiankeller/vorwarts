@@ -27,19 +27,11 @@ export default function HeaderMobile() {
               Home
             </Button>
           </Link>
-
-          <Button
-            fullWidth
-            variant="contained"
-            onClick={() => {
-              window.location.href =
-                "https://github.com/vonweinkeller/vorwarts-library";
-            }}
-            style={{ marginTop: "1rem", zIndex: "1" }}
-          >
-            GitHub Library
-          </Button>
-
+          <Link to="/library">
+            <Button fullWidth variant="contained" style={{ marginTop: "1rem" }}>
+              Library
+            </Button>
+          </Link>
           <Button
             fullWidth
             variant="contained"
@@ -80,12 +72,12 @@ const Buttons = styled.div`
   position: absolute;
   background-color: #fff;
   display: block;
-  top: ${(props) => (props.actived ? "4rem" : "-52rem")};
+  top: ${(props) => (props.actived ? "4rem" : "-60rem")};
   opacity: ${(props) => (props.actived ? "1" : "0")};
   right: 0rem;
   border-radius: 10px;
   padding: 1rem;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   transition: all 300ms ease-in-out;
 `;

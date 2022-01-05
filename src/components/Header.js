@@ -19,7 +19,6 @@ export default function Header() {
               Library
             </Button>
           </Link>
-
           <Button
             variant="contained"
             style={{ marginLeft: "1rem" }}
