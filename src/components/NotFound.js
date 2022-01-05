@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Typography, Checkbox } from "@mui/material";
+import { Typography } from "@mui/material";
 
 export default function NotFound() {
   return (

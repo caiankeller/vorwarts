@@ -12,21 +12,28 @@ import {
 var theme = createTheme({
   typography: {
     textAlign: "left",
-    fontFamily: "Inter, Roboto",
+    fontFamily: "Roboto, sans-serif",
     h1: {
+      fontFamily: "Inter",
+      fontWeight: "bold",
+    },
+    h4: {
+      fontFamily: "Inter",
       fontWeight: "bold",
     },
     body1: {
-      fontWeight: "normal",
-      fontFamily: "Roboto",
+      textIndent: "1rem",
+      textAlign: "justify",
+      marginTop: "1rem",
     },
   },
   palette: {
+    typography: { color: "white" },
     primary: {
       main: "#141414",
     },
     secondary: {
-      main: "#402be2",
+      main: "#fff",
     },
   },
 });

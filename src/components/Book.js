@@ -2,28 +2,45 @@ import styled from "styled-components";
 import { Typography, Button } from "@mui/material/";
 
 export default function Book(book) {
+  console.log(book);
   return (
     <Container>
-      <Left>
-        <Typography variant="h6">{book.title}</Typography>
-        <Typography variant="title" style={{ marginTop: "0rem" }}>
-          {book.author} · {book.year}
+      <Typography variant="h6">{book.title}</Typography>
+      <Typography variant="title" style={{ marginTop: "0rem" }}>
+        {book.author} · {book.year}
+      </Typography>
+      <Genres>
+        {book.genres.map((genre, key) => {
+          return (
+            <Icon style={{ marginRight: "1rem" }} key={key}>
+              {genre}
+            </Icon>
+          );
+        })}
+      </Genres>
+      {book.downloads.length === 0 ? (
+        <Typography variant="title" style={{ marginTop: "1rem" }}>
+          There's no download options.
         </Typography>
-        <Genres>
-          {book.genres.map((genre, key) => {
+      ) : (
+        <Downloads>
+          {book.downloads.map((download) => {
             return (
-              <Icon style={{ marginRight: "1rem" }} key={key}>
-                {genre}
-              </Icon>
+              <Button
+                color="secondary"
+                size="small"
+                variant="contained"
+                onClick={() => {
+                  window.open(download);
+                }}
+                style={{ marginTop: "1rem" }}
+              >
+                Download {download.substring(download.lastIndexOf("."))}
+              </Button>
             );
           })}
-        </Genres>
-      </Left>
-      <Right>
-        <Button fullWidth disabled variant="contained">
-          Download
-        </Button>
-      </Right>
+        </Downloads>
+      )}
     </Container>
   );
 }
@@ -31,26 +48,14 @@ export default function Book(book) {
 const Container = styled.li`
   display: flex;
   justify-content: space-between;
+  align-items: left;
+  flex-direction: column;
   border-radius: 7px;
   padding: 0.7rem 1rem;
-  margin: 0.5rem 0;
+  margin-top: 1rem;
   width: 100%;
-  background-color: black;
-  backdrop-filter: blur(14px);
-  background-color: #402be2;
-
-  @media only screen and (max-width: 755px) {
-    flex-direction: column;
-  }
-`;
-
-const Left = styled.div``;
-
-const Right = styled.div`
-  display: flex;
-  @media only screen and (max-width: 755px) {
-    margin-top: 1rem;
-  }
+  background-color: #141414;
+  color: white;
 `;
 
 const Genres = styled.div`
@@ -62,5 +67,16 @@ const Icon = styled.div`
   font-weight: bold;
   padding: 0.1rem 0.5rem;
   background-color: #8aff8a;
+  color: #141414;
   border-radius: 5px;
+`;
+
+const Downloads = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &:last-child {
+    margin-bottom: 0.5rem;
+  }
 `;
