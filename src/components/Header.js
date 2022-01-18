@@ -1,58 +1,59 @@
 import styled from "styled-components";
-import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Title, Button } from "./styles";
 
-export default function Header() {
+import { IoLibrary, IoDocumentText } from "react-icons/io5";
+
+export default function Header({ propsActivePage, activePage }) {
   return (
     <Container>
-      <Body>
-        <div style={{ display: "flex" }}>
-          <img src="/vorwarts.png" width="30px" height="30px" alt="" />
-          <Logo style={{ fontFamily: "Inter, Roboto" }}>Vorwärts</Logo>
+      <Title>
+        <div>
+          <img src="/image.png" alt="" height="32px" width="32px" />
+          Vorwärts
         </div>
-        <Buttons>
-          <Link to="/">
-            <Button variant="contained">Home</Button>
-          </Link>
-          <Link to="/library">
-            <Button variant="contained" style={{ marginLeft: "1rem" }}>
-              Library
-            </Button>
-          </Link>
-          <Button
-            variant="contained"
-            style={{ marginLeft: "1rem" }}
-            onClick={() => {
-              window.location.href =
-                "https://github.com/vonweinkeller/vorwarts-api";
-            }}
-          >
-            Documentation
-          </Button>
-        </Buttons>
-      </Body>
+      </Title>
+      <Buttons>
+        <Button
+          noFill={activePage === "documentation" ? false : true}
+          onClick={() => {
+            propsActivePage("documentation");
+          }}
+        >
+          Documentation
+          <IoDocumentText />
+        </Button>
+        <Button
+          noFill={activePage === "library" ? false : true}
+          onClick={() => {
+            propsActivePage("library");
+          }}
+        >
+          Library <IoLibrary />
+        </Button>
+      </Buttons>
     </Container>
   );
 }
 
-const Container = styled.header``;
-
-const Body = styled.div`
-  max-width: 1000px;
-  width: 100vw;
-
+const Container = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   padding: 1rem;
-  position: relative;
-`;
 
-const Logo = styled.div`
-  font-size: 1.5rem;
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Buttons = styled.div`
   display: flex;
+
+  @media only screen and (max-width: 766px) {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  * {
+    margin-left: 1rem;
+  }
 `;

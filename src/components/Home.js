@@ -1,59 +1,37 @@
+import { useState, useCallback } from "react";
+
 import styled from "styled-components";
-import { Typography, Button } from "@mui/material";
+
+import Header from "./Header";
+import Content from "./Content";
 
 export default function Home() {
+  const [page, setPage] = useState("library");
+  const activePage = useCallback((e) => {
+    e !== "library" && setPage("documentation");
+    e !== "documentation" && setPage("library");
+  }, []);
+
   return (
     <Container>
-      <Vorwarts>
-        <Typography variant="h1" component="div">
-          Building a Digital Public Library
-        </Typography>
-        <img src="/vorwarts.png" alt="" />
-      </Vorwarts>
-      <Typography variant="h4" component="div">
-        What is vorwärts about
-      </Typography>
-      <Typography variant="body1">
-        Vorwärts was born to be an easy way to get books in the public domain,
-        free of any publicity and completely transparent. The ideology of
-        Vorwärts is to maintain the neutrality of all these books written by
-        incredible authors and which now belong to everyone.
-      </Typography>
-      <Button
-        variant="contained"
-        style={{ marginTop: "1rem" }}
-        onClick={() => {
-          window.location.href =
-            "https://github.com/vonweinkeller/vorwarts-library";
-        }}
-      >
-        GitHub Library
-      </Button>
+      <Header propsActivePage={activePage} activePage={page} />
+      <Card />
+      <Content activePage={page} />
     </Container>
   );
 }
 
 const Container = styled.div`
-  width: 100%;
   height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: left;
-  flex-direction: column;
+  width: 100%;
 `;
 
-const Vorwarts = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media only screen and (max-width: 951px) {
-    flex-direction: column;
-
-    img {
-      width: 200px;
-      height: 200px;
-    }
-  }
+const Card = styled.div`
+  margin: 1rem;
+  height: 20%;
+  padding: 1rem;
+  background-image: url("/vangogh.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 `;

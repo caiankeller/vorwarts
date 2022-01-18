@@ -1,82 +1,62 @@
 import styled from "styled-components";
-import { Typography, Button } from "@mui/material/";
 
-export default function Book(book) {
+import { Subtitle, Button } from "./styles";
+
+export default function Book({ book }) {
   console.log(book);
   return (
     <Container>
-      <Typography variant="h6">{book.title}</Typography>
-      <Typography variant="title" style={{ marginTop: "0rem" }}>
-        {book.author} · {book.year}
-      </Typography>
-      <Genres>
+      <Subtitle>{book.title}</Subtitle>
+      <Author>{book.author}</Author>
+      <Tags>
         {book.genres.map((genre, key) => {
+          return <Tag key={key}>{genre}</Tag>;
+        })}
+      </Tags>
+      <Downloads>
+        {book.downloads.map((download, key) => {
           return (
-            <Icon style={{ marginRight: "1rem" }} key={key}>
-              {genre}
-            </Icon>
+            <Button
+              onClick={() => {
+                window.open(download);
+              }}
+              style={{ marginTop: "1rem" }}
+            >
+              Download {download.substring(download.lastIndexOf("."))}
+            </Button>
           );
         })}
-      </Genres>
-      {book.downloads.length === 0 ? (
-        <Typography variant="title" style={{ marginTop: "1rem" }}>
-          There's no download options.
-        </Typography>
-      ) : (
-        <Downloads>
-          {book.downloads.map((download) => {
-            return (
-              <Button
-                color="secondary"
-                size="small"
-                variant="contained"
-                onClick={() => {
-                  window.open(download);
-                }}
-                style={{ marginTop: "1rem" }}
-              >
-                Download {download.substring(download.lastIndexOf("."))}
-              </Button>
-            );
-          })}
-        </Downloads>
-      )}
+      </Downloads>
     </Container>
   );
 }
 
-const Container = styled.li`
+const Container = styled.div`
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f5e560;
+  border-radius: 2px;
+`;
+
+const Author = styled.div`
+  margin: 0;
+  opacity: 0.8;
+`;
+
+const Tags = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: left;
-  flex-direction: column;
-  border-radius: 7px;
-  padding: 0.7rem 1rem;
-  margin-top: 1rem;
   width: 100%;
+`;
+
+const Tag = styled.div`
   background-color: #141414;
-  color: white;
-`;
-
-const Genres = styled.div`
-  display: flex;
-  margin-top: 1rem;
-`;
-
-const Icon = styled.div`
-  font-weight: bold;
-  padding: 0.1rem 0.5rem;
-  background-color: #8aff8a;
-  color: #141414;
-  border-radius: 5px;
+  color: #f5e560;
+  padding: 0.3rem 0.8rem;
+  margin-right: 0.5rem;
 `;
 
 const Downloads = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  width: 100%;
-
-  &:last-child {
-    margin-bottom: 0.5rem;
-  }
 `;
