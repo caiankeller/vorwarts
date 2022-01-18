@@ -1,70 +1,164 @@
-# Getting Started with Create React App
+# [**Vorwärts**](https://vorwarts.herokuapp.com)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Vorwärts is not yet released or in its final state. And it will only be launched when a better way to support community contribution is created. However, the API and library as well as the already hosted books are available.
 
-## Available Scripts
+```json
+{
+	"status": 200,
+	"ok": true,
+	"data": [
+		{
+			"author": "Johann Wolfgang von Goethe",
+			"books": [
+				{
+					"downloads": [],
+					"_id": "61ba1d7e24a1157ef54f1220",
+					"title": "The Sorrows of Young Werther",
+					"author": "Johann Wolfgang von Goethe",
+					"genres": [
+						"Epistolary novel"
+					],
+					"language": "German",
+					"country": "Germany",
+					"year": 1774
+				}
+			]
+		}
+	]
+}
+```
 
-In the project directory, you can run:
+## **Why?** 
 
-### `npm start`
+Vorwärts was born to be an easy way to get books in the public domain, free of any publicity and completely transparent. The ideology of Vorwärts is to maintain the neutrality of all these books written by incredible authors and which now belong to everyone.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# **Start Using the API**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## **Root**
 
-### `npm test`
+**`https://vorwartsapi.herokuapp.com`**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **EndPoints**
 
-### `npm run build`
+- [x] /books
+- [ ] /genres
+- [ ] /authors
+- [ ] /years...
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Well, so...
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **/books**
+`GET` | Get books data.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+>All requests are sorted by author ascending..
 
-### `npm run eject`
+**params**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Optional parameters
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* `Title`
+* `Author`
+* `Year` *Year of publication. Ex.: {"year": "1984"}.*
+* `Country` *Stands for the country where the book was originally published. The short version of the name should be used. Ex.: {"country": "Germany"}.*
+* `Language` *Language originally written, the download options will usually be in the same language.* 
+* `Genres` *A slightly different field. To pass more than one gender, divide it into commas. Ex.: {"genres": "Fantasy, Children's Book"}.*
+* `Limit` *Stands for limit of books per request. The default limit is 10.*
+* `Offset` *Skip the first books.*
+* `Groupby` *Group books by field. Try: author, genres, year, country or language. Ex.: {"groupby": "author"}.*
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Required parameters
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* There are no required parameters here, not even tokens or rate limits (For now, be kind and respectful).
 
-## Learn More
+### **Basically**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
+axios.get("https://vorwartsapi.herokuapp.com/books", {
+    params: {
+      author: "Johann Wolfgang von Goethe",
+      groupby: "author"
+    }
+  })
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### **If everything goes well, expect something like that**
 
-### Code Splitting
+```json
+{
+	"status": 200,
+	"ok": true,
+	"data": [
+		{
+			"author": "Johann Wolfgang von Goethe",
+			"books": [
+				{
+					"downloads": [],
+					"_id": "61ba1d7e24a1157ef54f1220",
+					"title": "The Sorrows of Young Werther",
+					"author": "Johann Wolfgang von Goethe",
+					"genres": [
+						"Epistolary novel"
+					],
+					"language": "German",
+					"country": "Germany",
+					"year": 1774
+				}
+			]
+		}
+	]
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### **If it not.. 😳**
 
-### Analyzing the Bundle Size
+`404` This means that the application has not found any books in these specifications. The params are case-sensitive, so, caution.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+`406` This means that the 'groupby' selected attribute is not enabled.
 
-### Making a Progressive Web App
+But we response with a nice json saying what exactly happened.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```json
+{
+	"status": 400,
+	"ok": false,
+	"message": "no book has found"
+}
+```
 
-### Advanced Configuration
+## **"I want to help"**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+* ### **"I program":**
 
-### Deployment
+😮‍💨 Ufa.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Just make a pull request. I don't know how to manage a project. But as soon as possible, I will deploy it on Heroku. The project follows the MVC pattern. You only need to configure the dotenv file and start coding.
+ 
+.env:
+`BD_URL=`
 
-### `npm run build` fails to minify
+`node src/app.js` or  `yarn run start` to run.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+± yarn start
+yarn run v1.22.11
+$ node src/app.js
+We've taken off 🛫 on 3001 port
+```
+
+* ### **"I don't program":**
+
+We'll be back for you, I promise <3. Since you're on GitHub, if you know how to commit, any help with bringing new books to Vorwärts is welcome in the [library](https://github.com/vonweinkeller/vorwarts-library) repository. Just be careful and pay attention to whether the book is in the public domain and whether there is copyright on the translation.
+
+## **Issues**
+
+- [ ] All parameters are case-sensitive, which makes the request more likely to respond with no results A solution will be implemented as soon as I figure out a good solution.
+- [ ] Find bugs to put here.
+
+> Is it worth it? Everything is worth the effort<br>
+> If the soul isn't small.<br>
+> Who wants to pass beyond Bojador<br>
+> Must first pass beyond the suffering.<br>
+> God gave to the sea danger and the abyss,<br>
+> But in it lies what the sky mirrored.<br>
+
+**Fernando Pessoa, Portuguese Sea**.

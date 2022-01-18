@@ -15,6 +15,7 @@ export default function Header({ propsActivePage, activePage }) {
       <Buttons>
         <Button
           noFill={activePage === "documentation" ? false : true}
+          style={{ margin: "0" }}
           onClick={() => {
             propsActivePage("documentation");
           }}

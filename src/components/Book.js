@@ -45,6 +45,7 @@ const Author = styled.div`
 
 const Tags = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
 `;
 
