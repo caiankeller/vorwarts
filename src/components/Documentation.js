@@ -18,6 +18,7 @@ export default function Documentation({ page }) {
           Vorwärts is to maintain the neutrality of all these books written by
           incredible authors and which now belong to everyone.
         </Text>
+        <Text>Visit GitHub for more information and examples.</Text>
         <Button
           onClick={() => {
             window.open("https://github.com/vonweinkeller/vorwarts-api");

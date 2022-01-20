@@ -51,10 +51,11 @@ export const Button = styled.button`
   transition: all 250ms;
 
   background-color: ${(props) => (props.noFill ? "white" : "#141414")};
+  border: ${(props) => (props.noFill ? "1px solid #141414" : "none")};
   color: ${(props) => (props.noFill ? "#141414" : "white")};
   border-radius: 2px;
 
   &::last-child {
-    margin-left: 0.5rem;
+    margin-left: 1rem;
   }
 `;

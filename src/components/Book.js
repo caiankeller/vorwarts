@@ -54,6 +54,7 @@ const Tag = styled.div`
   color: #f5e560;
   padding: 0.3rem 0.8rem;
   margin-right: 0.5rem;
+  margin-top: 1rem;
 `;
 
 const Downloads = styled.div`

@@ -7,13 +7,19 @@ export default function Header({ propsActivePage, activePage }) {
   return (
     <Container>
       <Title>
-        <div>
-          <img src="/image.png" alt="" height="32px" width="32px" />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           Vorwärts
+          <img src="/image.png" alt="" height="32px" width="32px" />
         </div>
       </Title>
       <Buttons>
-        <Button
+        <ButtonIcon
           noFill={activePage === "documentation" ? false : true}
           style={{ margin: "0" }}
           onClick={() => {
@@ -22,15 +28,16 @@ export default function Header({ propsActivePage, activePage }) {
         >
           Documentation
           <IoDocumentText />
-        </Button>
-        <Button
+        </ButtonIcon>
+        <ButtonIcon
           noFill={activePage === "library" ? false : true}
           onClick={() => {
             propsActivePage("library");
           }}
         >
-          Library <IoLibrary />
-        </Button>
+          Library
+          <IoLibrary />
+        </ButtonIcon>
       </Buttons>
     </Container>
   );
@@ -52,9 +59,16 @@ const Buttons = styled.div`
     width: 100%;
     justify-content: center;
     align-items: center;
+    pad
   }
 
-  * {
+  > * {
     margin-left: 1rem;
+  }
+`;
+
+const ButtonIcon = styled(Button)`
+  &:last-child {
+    margin-left: 0.5rem;
   }
 `;
