@@ -1,74 +1,37 @@
 import styled from "styled-components";
-import { Title, Button } from "./styles";
+import { Link } from "react-router-dom";
 
-import { IoLibrary, IoDocumentText } from "react-icons/io5";
+import { SiGithub } from "react-icons/si";
 
-export default function Header({ propsActivePage, activePage }) {
+export default function Header() {
   return (
     <Container>
-      <Title>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          Vorwärts
-          <img src="/image.png" alt="" height="32px" width="32px" />
-        </div>
-      </Title>
-      <Buttons>
-        <ButtonIcon
-          noFill={activePage === "documentation" ? false : true}
-          style={{ margin: "0" }}
-          onClick={() => {
-            propsActivePage("documentation");
-          }}
-        >
-          Documentation
-          <IoDocumentText />
-        </ButtonIcon>
-        <ButtonIcon
-          noFill={activePage === "library" ? false : true}
-          onClick={() => {
-            propsActivePage("library");
-          }}
-        >
-          Library
-          <IoLibrary />
-        </ButtonIcon>
-      </Buttons>
+      <Title to="/">Vorwärts</Title>
+      <Button
+        onClick={() =>
+          window.open("https://github.com/vonweinkeller/vorwarts-api")
+        }
+      >
+        <SiGithub size="25" color="#141414" />
+      </Button>
     </Container>
   );
 }
 
 const Container = styled.div`
   display: flex;
-  padding: 1rem;
-
-  @media only screen and (max-width: 768px) {
-    flex-direction: column;
-  }
+  justify-content: space-between;
+  width: 100%;
 `;
 
-const Buttons = styled.div`
-  display: flex;
-
-  @media only screen and (max-width: 766px) {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    pad
-  }
-
-  > * {
-    margin-left: 1rem;
-  }
+const Title = styled(Link)`
+  font-size: 2rem;
+  color: #7c5ce6;
+  text-decoration: none;
+  font-weight: 900;
 `;
 
-const ButtonIcon = styled(Button)`
-  &:last-child {
-    margin-left: 0.5rem;
-  }
+const Button = styled.button`
+  border: none;
+  background: none;
 `;
