@@ -16,7 +16,7 @@ export default function Home() {
     },
   ];
   return (
-    <Container>
+    <Container style={{ marginTop: "1rem" }}>
       <div>
         <Logo>
           <GiBookshelf color="#5500ff" size="40" />
@@ -38,73 +38,37 @@ export default function Home() {
   );
 }
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-itens: center;
-  height: 100%;
-
-  @media only screen and (max-height: 750px) {
-    display: block;
-  }
-
-  @media only screen and (max-width: 400px) {
-    justify-content: space-around;
-  }
-`;
+const Container = styled.div``;
 
 const Logo = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-itens: center;
   flex-wrap: wrap;
-  width: 100%;
-  text-shadow: 2px 2px 15px 5px #000;
   color: #5500ff;
 `;
 const Title = styled.h1`
   font-size: 3rem;
   font-weight: 900;
-  text-align: justify;
+
+  @media only screen and (max-width: 550px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const Text = styled.p`
-  font-size: 1.3rem;
-  padding: 0 1rem;
+  font-size: 1.2rem;
+  padding: 0 0.5rem;
   text-align: justify;
-  margin-top: 0.5rem;
 
   @media only screen and (max-width: 550px) {
-    padding: 0 0.5rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
   }
 `;
 
 const Cards = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 350px;
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
-  margin-top: 1rem;
+  margin: 1rem 0;
   border-radius: 5px;
-  overflow-y: scroll;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  @media only screen and (max-width: 810px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media only screen and (max-width: 540px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  @media only screen and (max-width: 540px) {
-    grid-auto-rows: 250px;
-  }
 `;

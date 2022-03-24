@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
-
-import styled from "styled-components";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { GiBookshelf } from "react-icons/gi";
-
+import styled from "styled-components";
 import Books from "./Books";
 
 export default function Library() {
@@ -20,6 +18,7 @@ export default function Library() {
     });
 
     setBooks(result);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [book]);
 
   useEffect(() => {
@@ -57,25 +56,16 @@ export default function Library() {
   );
 }
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  height: 100%;
-  width: 100%;
-  padding: 0.5rem 0;
-  overflow: hidden;
-`;
+const Container = styled.div``;
 
 const Title = styled.h2`
+  margin-top: 1rem;
   font-size: 1.5rem;
-  color: #141414;
 `;
 
 const Form = styled.form`
   display: flex;
-  margin-top: 1rem;
-  width: 100%;
+  margin-top: 0.5rem;
 `;
 
 const Input = styled.input`

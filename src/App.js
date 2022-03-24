@@ -23,32 +23,25 @@ export default function App() {
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-`;
-
-const Box = styled.div`
-  display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
+  width: 100vw;
+  height: 100vh;
 
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }
+`;
 
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  overflow: scroll;
-
+const Box = styled.div`
   max-width: 1000px;
   width: 100%;
-  height: 100%;
   padding: 1rem;
-  
+
   @media only screen and (max-width: 766px) {
     padding: 0.5rem;
   }

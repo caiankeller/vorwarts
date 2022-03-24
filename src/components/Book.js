@@ -1,9 +1,9 @@
 import { useState } from "react";
-
-import styled from "styled-components";
 import ReactCountryFlag from "react-country-flag";
+import { MdClose, MdDownload, MdInfo, MdLanguage } from "react-icons/md";
+import styled from "styled-components";
 
-import { MdLanguage, MdDownload, MdClose, MdInfo } from "react-icons/md";
+
 
 export default function Book({ book }) {
   const [download, setDownload] = useState(false);
@@ -106,7 +106,7 @@ const Title = styled.h2`
 const Subtitle = styled(Title)`
   font-weight: 500;
   display: flex;
-  align-itens: center;
+  align-items: center;
   justify-content: start;
 `;
 
@@ -153,7 +153,7 @@ const Downloads = styled.div``;
 
 const Link = styled.a`
   display: flex;
-  align-itens: center;
+  align-items: center;
   color: #5500ff;
   font-weight: 900;
 `;

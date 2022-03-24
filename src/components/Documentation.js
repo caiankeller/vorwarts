@@ -1,10 +1,8 @@
-import { useState } from "react";
-
-import styled from "styled-components";
 import axios from "axios";
-
+import { useState } from "react";
 import { AiFillApi } from "react-icons/ai";
-import { MdClose, MdLightbulbOutline, MdLightbulb } from "react-icons/md";
+import { MdClose, MdLightbulb, MdLightbulbOutline } from "react-icons/md";
+import styled from "styled-components";
 
 export default function Documentation() {
   const [exemple, setExemple] = useState("//make and request :D");
@@ -36,9 +34,7 @@ export default function Documentation() {
       <Warning>
         Vorwärts is entirely open-source. Don't mind use it in anyway.
       </Warning>
-      <Text>
-        
-      </Text>
+      <Text></Text>
       <Subtitle>Getting Started</Subtitle>
       <Warning>
         <AiFillApi style={{ marginRight: "0.5rem" }} />
@@ -129,22 +125,15 @@ export default function Documentation() {
   );
 }
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  height: 100%;
-  width: 100%;
-  padding: 1rem 0;
-`;
+const Container = styled.div``;
 
 const Title = styled.h2`
+  margin-top: 1rem;
   font-size: 1.5rem;
-  color: #141414;
 `;
 
 const Subtitle = styled(Title)`
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   font-size: 1.3rem;
 `;
 
@@ -155,15 +144,13 @@ const Hightlight = styled(Title)`
 
 const Warning = styled.p`
   display: flex;
-  align-itens: center;
+  align-items: center;
   flex-wrap: wrap;
-  word-wrap: break-word;
   background: linear-gradient(45deg, #5500ff, #621bfa);
   border-radius: 5px;
   font-size: 1rem;
   font-weight: 500;
   padding: 1rem;
-  text-align: justify;
   margin-top: 0.5rem;
   color: #141414;
 
@@ -174,24 +161,26 @@ const Warning = styled.p`
 
 const Text = styled.p`
   display: flex;
-  align-itens: center;
+  align-items: center;
   font-size: 1rem;
   text-indent: 1rem;
   font-weight: 500;
   padding: 0.5rem 0;
   text-align: justify;
   margin-top: 0.5rem;
-  color: #141414;
 `;
 
 const Note = styled(Text)`
   text-indent: 0;
+  padding: 1rem;
   margin-top: 0.5rem;
-  padding: 0.3rem;
-  background-color: #bde038;
-  color: #141414;
+  background-color: #5500ffa1;
   font-style: italic;
   border-radius: 5px;
+
+  @media only screen and (max-width: 766px) {
+    padding: 0.5rem;
+  }
 `;
 
 const Code = styled.pre`
@@ -201,9 +190,7 @@ const Code = styled.pre`
   font-size: 1rem;
   font-weight: 500;
   padding: 0.5rem;
-  text-align: justify;
   margin-top: 1rem;
-  color: #141414;
   white-space: pre-wrap; /* css-3 */
   white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
   white-space: -pre-wrap; /* Opera 4-6 */
@@ -230,13 +217,11 @@ const Tag = styled.div`
   background-color: #bde038;
   padding: 0.5rem;
   border-radius: 7px;
-  color: #141414;
   font-weight: 500;
 `;
 
 const Line = styled.div`
   display: flex;
-  jusity-content: space-between;
   width: 100%;
 `;
 
@@ -252,18 +237,17 @@ const Parameter = styled.li`
 `;
 
 const Append = styled.div`
-  padding: 1rem 0;
+  margin-top: 1rem;
 `;
 
 const Button = styled.button`
   display: flex;
   justify-content: center;
-  align-itens: center;
+  align-items: center;
   margin-top: 1rem;
   padding: 0.5rem;
   border: none;
-  background-color: ${(props) => (props.disabled ? "#808080" : "#5500ff")};
-  color: ${(props) => (props.disabled ? "#fff" : "#141414")};
+  background-color: #5500ff;
   font-family: "IBM Plex Mono";
   font-size: 1rem;
   text-decoration: none;

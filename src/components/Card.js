@@ -47,10 +47,6 @@ const Text = styled.p`
   font-size: 1rem;
   text-align: justify;
   margin-top: 0.3rem;
-
-  @media only screen and (max-width: 550px) {
-    padding: 0 1rem;
-  }
 `;
 
 const Button = styled(Link)`
