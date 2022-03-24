@@ -63,11 +63,11 @@ const Container = styled.div`
   justify-content: start;
   height: 100%;
   width: 100%;
+  padding: 0.5rem 0;
   overflow: hidden;
 `;
 
 const Title = styled.h2`
-  margin-top: 1rem;
   font-size: 1.5rem;
   color: #141414;
 `;
@@ -90,10 +90,10 @@ const Input = styled.input`
 const Button = styled.button`
   padding: 0.5rem;
   border: none;
-  background-color: ${(props) => (!props.noFill ? "#7c5ce6" : "#fff")};
-  border: ${(props) => props.noFill && "solid 1px #7c5ce6"};
+  background-color: #bde038;
+  border: #bde038;
   font-weight: 900;
-  color: ${(props) => (props.noFill ? "#7c5ce6" : "#fff")};
+  color: #141414;
   font-family: Inconsolata;
   font-size: 1rem;
   text-decoration: none;

@@ -27,10 +27,6 @@ const Container = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-
-  @media only screen and (max-width: 766px) {
-    padding: 0.5rem;
-  }
 `;
 
 const Box = styled.div`
@@ -52,4 +48,8 @@ const Box = styled.div`
   width: 100%;
   height: 100%;
   padding: 1rem;
+  
+  @media only screen and (max-width: 766px) {
+    padding: 0.5rem;
+  }
 `;

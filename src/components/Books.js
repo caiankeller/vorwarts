@@ -15,6 +15,7 @@ export default function Books({ books }) {
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 350px;
   grid-gap: 1rem;
   height: 100%;
   width: 100%;
@@ -35,5 +36,9 @@ const Container = styled.div`
 
   @media only screen and (max-width: 540px) {
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media only screen and (max-width : 540px) {
+    grid-auto-rows: 250px;
   }
 `;

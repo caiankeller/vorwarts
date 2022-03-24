@@ -1,13 +1,25 @@
 import styled from "styled-components";
 import { GiBookshelf } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import Card from "./Card";
 
 export default function Home() {
+  const cards = [
+    {
+      title: "Library",
+      path: "/library",
+      description: "Discover and download our books.",
+    },
+    {
+      title: "Documentation",
+      path: "/documentation",
+      description: "Learn more about the project, the goals and how to help.",
+    },
+  ];
   return (
     <Container>
       <div>
         <Logo>
-          <GiBookshelf color="#7c5ce6" size="40" />
+          <GiBookshelf color="#5500ff" size="40" />
           <Title>Building people's public domain library</Title>
         </Logo>
         <Text>
@@ -17,17 +29,11 @@ export default function Home() {
           incredible authors and which now belong to everyone.
         </Text>
       </div>
-      <Buttons>
-        <Button to="library">
-          <span>Library</span>
-        </Button>
-        <Button to="documentation " noFill="true">
-          <span>Documentation</span>
-        </Button>
-        <Button to="help" noFill="true">
-          <span>I want to help!</span>
-        </Button>
-      </Buttons>
+      <Cards>
+        {cards.map((card, key) => {
+          return <Card card={card} key={key} />;
+        })}
+      </Cards>
     </Container>
   );
 }
@@ -38,6 +44,10 @@ const Container = styled.div`
   justify-content: center;
   align-itens: center;
   height: 100%;
+
+  @media only screen and (max-height: 750px) {
+    display: block;
+  }
 
   @media only screen and (max-width: 400px) {
     justify-content: space-around;
@@ -51,41 +61,50 @@ const Logo = styled.div`
   flex-wrap: wrap;
   width: 100%;
   text-shadow: 2px 2px 15px 5px #000;
-  color: #7c5ce6;
+  color: #5500ff;
 `;
 const Title = styled.h1`
   font-size: 3rem;
   font-weight: 900;
+  text-align: justify;
 `;
 
 const Text = styled.p`
   font-size: 1.3rem;
-  padding: 0 2rem;
+  padding: 0 1rem;
   text-align: justify;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 
   @media only screen and (max-width: 550px) {
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
 `;
 
-const Buttons = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+const Cards = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 350px;
+  grid-gap: 1rem;
   margin-top: 1rem;
-`;
-
-const Button = styled(Link)`
-  margin-top: 1rem;
-  padding: 0.5rem;
-  margin-right: 1rem;
-  border: none;
-  background-color: ${(props) => (!props.noFill ? "#7c5ce6" : "#fff")};
-  border: ${(props) => props.noFill && "solid 1px #7c5ce6"};
-  font-weight: 900;
-  color: ${(props) => (props.noFill ? "#7c5ce6" : "#fff")};
-  font-family: Inconsolata;
-  font-size: 1.2rem;
-  text-decoration: none;
   border-radius: 5px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  @media only screen and (max-width: 810px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (max-width: 540px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media only screen and (max-width: 540px) {
+    grid-auto-rows: 250px;
+  }
 `;

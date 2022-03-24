@@ -4,10 +4,11 @@ import styled from "styled-components";
 import axios from "axios";
 
 import { AiFillApi } from "react-icons/ai";
-import { MdClose } from "react-icons/md";
+import { MdClose, MdLightbulbOutline, MdLightbulb } from "react-icons/md";
 
 export default function Documentation() {
-  const [exemple, setExemple] = useState("^//make and request :D");
+  const [exemple, setExemple] = useState("//make and request :D");
+  const [got, setGot] = useState(false);
 
   const code = `axios.get("https://vorwartsapi.herokuapp.com/books", {
     params: {
@@ -36,22 +37,21 @@ export default function Documentation() {
         Vorwärts is entirely open-source. Don't mind use it in anyway.
       </Warning>
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at eros
-        at elit mollis laoreet et at risus. Sed nec erat ut orci auctor
-        fringilla. Suspendisse potenti. Curabitur accumsan elit eu augue
-        malesuada euismod. Suspendisse elit lectus, consectetur ut est
-        ullamcorper, tempus sodales nunc.
+        
       </Text>
       <Subtitle>Getting Started</Subtitle>
       <Warning>
-        <AiFillApi style={{ marginRight: "1rem" }} />
+        <AiFillApi style={{ marginRight: "0.5rem" }} />
         https://vorwartsapi.herokuapp.com
       </Warning>
-      <Note>Use this link do make requests.</Note>
+      <Note>
+        <MdLightbulb style={{ marginRight: "0.5rem" }} />
+        Use this link do make requests.
+      </Note>
       <Hightlight>Authentication</Hightlight>
       <Text>
         <MdClose />
-        There's no Authentication needed or token.
+        There is no authentication required or token.
       </Text>
       <Hightlight>EndPoints</Hightlight>
       <Endpoints>
@@ -110,7 +110,17 @@ export default function Documentation() {
             </Parameters>
             <Hightlight>Basically...</Hightlight>
             <Code>{code}</Code>
-            <Button onClick={gettingBooks}>Test Code</Button>
+            {console.log(got)}
+            <Button
+              disabled={got}
+              onClick={() => {
+                setExemple("fetching...");
+                gettingBooks();
+                setGot(true);
+              }}
+            >
+              Try it <MdLightbulbOutline style={{ marginLeft: "1rem" }} />
+            </Button>
             <Code>{JSON.stringify(exemple, null, 2)}</Code>
           </Append>
         </Endpoint>
@@ -146,7 +156,9 @@ const Hightlight = styled(Title)`
 const Warning = styled.p`
   display: flex;
   align-itens: center;
-  background-color: #8e71ed;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  background: linear-gradient(45deg, #5500ff, #621bfa);
   border-radius: 5px;
   font-size: 1rem;
   font-weight: 500;
@@ -154,6 +166,10 @@ const Warning = styled.p`
   text-align: justify;
   margin-top: 0.5rem;
   color: #141414;
+
+  @media only screen and (max-width: 766px) {
+    padding: 0.5rem;
+  }
 `;
 
 const Text = styled.p`
@@ -169,17 +185,18 @@ const Text = styled.p`
 `;
 
 const Note = styled(Text)`
-  text-indent: none;
-  margin-top: 0.2rem;
+  text-indent: 0;
+  margin-top: 0.5rem;
   padding: 0.3rem;
-  background-color: #ede47b;
+  background-color: #bde038;
+  color: #141414;
   font-style: italic;
   border-radius: 5px;
 `;
 
 const Code = styled.pre`
   font-family: "IBM Plex Mono", monospace;
-  background: linear-gradient(110deg, #8e71ed, #6b41f2);
+  background: linear-gradient(45deg, #5500ff, #621bfa);
   border-radius: 5px;
   font-size: 1rem;
   font-weight: 500;
@@ -210,10 +227,11 @@ const Endpoint = styled.li`
 `;
 
 const Tag = styled.div`
-  background-color: #b8ff01;
-  margin-right: 1rem;
-  padding: 0.4rem;
+  background-color: #bde038;
+  padding: 0.5rem;
   border-radius: 7px;
+  color: #141414;
+  font-weight: 500;
 `;
 
 const Line = styled.div`
@@ -238,14 +256,16 @@ const Append = styled.div`
 `;
 
 const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-itens: center;
   margin-top: 1rem;
   padding: 0.5rem;
   border: none;
-  background-color: #7c5ce6};
-  font-weight: 900;
-  color: #fff;
-  font-family: Inconsolata;
-  font-size: 1.2rem;
+  background-color: ${(props) => (props.disabled ? "#808080" : "#5500ff")};
+  color: ${(props) => (props.disabled ? "#fff" : "#141414")};
+  font-family: "IBM Plex Mono";
+  font-size: 1rem;
   text-decoration: none;
   border-radius: 5px;
 `;

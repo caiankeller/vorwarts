@@ -14,14 +14,27 @@ export default function Book({ book }) {
       <div>
         <Title>
           {book.title}
-          {info ? (
-            <MdClose style={{ zIndex: 1 }} onClick={() => setInfo(!info)} />
-          ) : (
-            <MdInfo
-              style={{ marginLeft: "0.5rem", zIndex: 1 }}
-              onClick={() => setInfo(!info)}
-            />
-          )}
+          <div
+            style={{
+              display: "flex",
+              color: "#bde038",
+              marginLeft: "0.5rem",
+              zIndex: 1,
+            }}
+          >
+            {info ? (
+              <MdClose size="20" onClick={() => setInfo(!info)} />
+            ) : (
+              <MdInfo size="20" onClick={() => setInfo(!info)} />
+            )}
+            {book.downloads.length !== 0 && (
+              <MdDownload
+                size="20"
+                style={{ marginLeft: "0.5rem" }}
+                onClick={() => setDownload(!download)}
+              />
+            )}
+          </div>
         </Title>
         <Author>{book.author}</Author>
       </div>
@@ -43,12 +56,6 @@ export default function Book({ book }) {
             return <Genre key={key}>{genre}</Genre>;
           })}
         </Genres>
-
-        {book.downloads.length !== 0 && (
-          <Button onClick={() => setDownload(!download)}>
-            <MdDownload />
-          </Button>
-        )}
       </div>
 
       <Download open={download}>
@@ -62,9 +69,6 @@ export default function Book({ book }) {
             );
           })}
         </Downloads>
-        <ButtonSecondary onClick={() => setDownload(!download)}>
-          <MdClose />
-        </ButtonSecondary>
       </Download>
       <Info open={info}>
         <Text>{JSON.stringify(book, null, 2)}</Text>
@@ -80,7 +84,7 @@ const Container = styled.div`
   width: 100%;
   padding: 1rem;
   border-radius: 5px;
-  background: linear-gradient(45deg, #7c5ce6, #9e83f7fa);
+  background: linear-gradient(45deg, #5500ff, #621bfa);
   color: #141414;
   height: 350px;
   position: relative;
@@ -118,42 +122,13 @@ const Genres = styled.ul`
 `;
 
 const Genre = styled.li`
-  color: #7c5ce6;
+  color: #141414;
   margin-top: 0.5rem;
   padding: 0.2rem 0.5rem;
-  background-color: #141414;
+  background-color: #bde038;
   border-radius: 5px;
   margin-right: 0.5rem;
   font-weight: 900;
-`;
-
-const Button = styled.button`
-  display: flex;
-  align-itens: center;
-  justify-content: center;
-  margin-top: 0.5rem;
-  padding: 0.3rem;
-  border: none;
-  background-color: white;
-  color: #7c5ce6;
-  font-size: 1.2rem;
-  text-decoration: none;
-  border-radius: 3px;
-  width: 100%;
-`;
-
-const ButtonSecondary = styled.button`
-  display: flex;
-  align-itens: center;
-  justify-content: center;
-  padding: 0.3rem;
-  border: none;
-  background-color: #7c5ce6;
-  color: #fff;
-  font-size: 1.2rem;
-  text-decoration: none;
-  border-radius: 3px;
-  width: 100%;
 `;
 
 const Download = styled.div`
@@ -165,8 +140,9 @@ const Download = styled.div`
   position: absolute;
   top: ${(props) => (props.open ? 0 : "100%")};
   left: 0;
-  background: white;
-  border: 1px solid #7c5ce6;
+  background: #141414;
+  color: #5500ff;
+  border: 1px solid #5500ff;
   transition: all 150ms ease-out;
   opacity: ${(props) => (props.open ? 1 : 0)};
   height: ${(props) => props.open && "100%"};
@@ -178,7 +154,7 @@ const Downloads = styled.div``;
 const Link = styled.a`
   display: flex;
   align-itens: center;
-  color: #7c5ce6;
+  color: #5500ff;
   font-weight: 900;
 `;
 
