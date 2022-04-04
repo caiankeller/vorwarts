@@ -80,10 +80,9 @@ const Input = styled.input`
 const Button = styled.button`
   padding: 0.5rem;
   border: none;
-  background-color: #bde038;
-  border: #bde038;
+  background-color: #141414;
   font-weight: 900;
-  color: #141414;
+  color: white;
   font-family: Inconsolata;
   font-size: 1rem;
   text-decoration: none;

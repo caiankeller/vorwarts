@@ -19,7 +19,7 @@ export default function Home() {
     <Container style={{ marginTop: "1rem" }}>
       <div>
         <Logo>
-          <GiBookshelf color="#5500ff" size="40" />
+          <GiBookshelf size="40" />
           <Title>Building people's public domain library</Title>
         </Logo>
         <Text>
@@ -43,7 +43,7 @@ const Container = styled.div``;
 const Logo = styled.div`
   display: flex;
   flex-wrap: wrap;
-  color: #5500ff;
+  color: #141414;
 `;
 const Title = styled.h1`
   font-size: 3rem;

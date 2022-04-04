@@ -146,13 +146,13 @@ const Warning = styled.p`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  background: linear-gradient(45deg, #5500ff, #621bfa);
+  background-color: #141414;
   border-radius: 5px;
   font-size: 1rem;
   font-weight: 500;
   padding: 1rem;
   margin-top: 0.5rem;
-  color: #141414;
+  color: white;
 
   @media only screen and (max-width: 766px) {
     padding: 0.5rem;
@@ -174,7 +174,8 @@ const Note = styled(Text)`
   text-indent: 0;
   padding: 1rem;
   margin-top: 0.5rem;
-  background-color: #5500ffa1;
+  background-color: #40565e;
+  color: white;
   font-style: italic;
   border-radius: 5px;
 
@@ -185,7 +186,8 @@ const Note = styled(Text)`
 
 const Code = styled.pre`
   font-family: "IBM Plex Mono", monospace;
-  background: linear-gradient(45deg, #5500ff, #621bfa);
+  background-color: #141414;
+  color: white;
   border-radius: 5px;
   font-size: 1rem;
   font-weight: 500;
@@ -214,7 +216,8 @@ const Endpoint = styled.li`
 `;
 
 const Tag = styled.div`
-  background-color: #bde038;
+  background-color: #40565e;
+  color: white;
   padding: 0.5rem;
   border-radius: 7px;
   font-weight: 500;
@@ -247,7 +250,8 @@ const Button = styled.button`
   margin-top: 1rem;
   padding: 0.5rem;
   border: none;
-  background-color: #5500ff;
+  background-color: #141414;
+  color: white;
   font-family: "IBM Plex Mono";
   font-size: 1rem;
   text-decoration: none;

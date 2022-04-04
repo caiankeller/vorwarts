@@ -3,8 +3,6 @@ import ReactCountryFlag from "react-country-flag";
 import { MdClose, MdDownload, MdInfo, MdLanguage } from "react-icons/md";
 import styled from "styled-components";
 
-
-
 export default function Book({ book }) {
   const [download, setDownload] = useState(false);
   const [info, setInfo] = useState(false);
@@ -17,7 +15,6 @@ export default function Book({ book }) {
           <div
             style={{
               display: "flex",
-              color: "#bde038",
               marginLeft: "0.5rem",
               zIndex: 1,
             }}
@@ -27,13 +24,13 @@ export default function Book({ book }) {
             ) : (
               <MdInfo size="20" onClick={() => setInfo(!info)} />
             )}
-            {book.downloads.length !== 0 && (
+            {typeof book.files !== "undefined" ? (
               <MdDownload
                 size="20"
                 style={{ marginLeft: "0.5rem" }}
                 onClick={() => setDownload(!download)}
               />
-            )}
+            ) : null}
           </div>
         </Title>
         <Author>{book.author}</Author>
@@ -58,18 +55,20 @@ export default function Book({ book }) {
         </Genres>
       </div>
 
-      <Download open={download}>
-        <Downloads>
-          {book.downloads.map((download, key) => {
-            return (
-              <Link href={download} key={key}>
-                <MdDownload style={{ marginRight: "0.5rem" }} />
-                Download {download.substring(download.lastIndexOf("."))}
-              </Link>
-            );
-          })}
-        </Downloads>
-      </Download>
+      {typeof book.files !== "undefined" ? (
+        <Download open={download}>
+          <Downloads>
+            {book.files.map((file, key) => {
+              return (
+                <Link href={file.url} key={key}>
+                  <MdDownload style={{ marginRight: "0.5rem" }} />
+                  Download {file.type} edution, format {file.extension}
+                </Link>
+              );
+            })}
+          </Downloads>
+        </Download>) : null}
+
       <Info open={info}>
         <Text>{JSON.stringify(book, null, 2)}</Text>
       </Info>
@@ -84,8 +83,8 @@ const Container = styled.div`
   width: 100%;
   padding: 1rem;
   border-radius: 5px;
-  background: linear-gradient(45deg, #5500ff, #621bfa);
-  color: #141414;
+  background-color: #141414;
+  color: white;
   height: 350px;
   position: relative;
   overflow: hidden;
@@ -125,7 +124,7 @@ const Genre = styled.li`
   color: #141414;
   margin-top: 0.5rem;
   padding: 0.2rem 0.5rem;
-  background-color: #bde038;
+  background-color: white;
   border-radius: 5px;
   margin-right: 0.5rem;
   font-weight: 900;
@@ -135,14 +134,14 @@ const Download = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 2rem 1rem 1rem 1rem;
   border-radius: 5px;
   position: absolute;
   top: ${(props) => (props.open ? 0 : "100%")};
   left: 0;
   background: #141414;
-  color: #5500ff;
-  border: 1px solid #5500ff;
+  color: white;
+  border: 1px solid white;
   transition: all 150ms ease-out;
   opacity: ${(props) => (props.open ? 1 : 0)};
   height: ${(props) => props.open && "100%"};
@@ -154,7 +153,7 @@ const Downloads = styled.div``;
 const Link = styled.a`
   display: flex;
   align-items: center;
-  color: #5500ff;
+  color: white;
   font-weight: 900;
 `;
 

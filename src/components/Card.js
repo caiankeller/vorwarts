@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Card({ card }) {
   return (
-    <Container>
+    <Container title={card.title}>
       <div>
         <Title>{card.title}</Title>
         <Text>{card.description}</Text>
@@ -24,8 +24,9 @@ const Container = styled.div`
   width: 100%;
   padding: 1rem;
   border-radius: 5px;
-  background: linear-gradient(45deg, #5500ff, #621bfa);
-  color: #141414;
+  background-color: #141414;
+  color: white;
+  ${props => props.title === "Library" && `background-image: url(vangogh.jpg); background-position: center 4.5rem; background-size: cover; background-repeat: no-repeat;`};
   height: 350px;
   position: relative;
   overflow: hidden;
@@ -53,7 +54,7 @@ const Button = styled(Link)`
   margin-bottom: 1rem;
   padding: 0.5rem;
   border: none;
-  background-color: ${(props) => (!props.noFill ? "#bde038" : "#fff")};
+  background-color: white;
   border: ${(props) => props.noFill && "solid 1px #bde038"};
   font-weight: 900;
   color: #141414;
