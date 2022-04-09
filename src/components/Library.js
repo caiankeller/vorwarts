@@ -80,3 +80,18 @@ const Input = styled.input`
   // margin-right: 1rem;
   width: 100%;
 `;
+<<<<<<< HEAD
+=======
+
+const Button = styled.button`
+  padding: 0.5rem;
+  border: none;
+  background-color: #141414;
+  font-weight: 900;
+  color: white;
+  font-family: Inconsolata;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+`;
+>>>>>>> c1eb675c11d01e23194d911529a81a866cb38d95
