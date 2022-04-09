@@ -1,7 +1,6 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-
 import { SiGithub } from "react-icons/si";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export default function Header() {
   return (

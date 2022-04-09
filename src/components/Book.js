@@ -24,13 +24,13 @@ export default function Book({ book }) {
             ) : (
               <MdInfo size="20" onClick={() => setInfo(!info)} />
             )}
-            {typeof book.files !== "undefined" ? (
+            {typeof book.files !== "undefined" && (
               <MdDownload
                 size="20"
                 style={{ marginLeft: "0.5rem" }}
                 onClick={() => setDownload(!download)}
               />
-            ) : null}
+            )}
           </div>
         </Title>
         <Author>{book.author}</Author>
@@ -40,7 +40,7 @@ export default function Book({ book }) {
         <Subtitle>
           {book.country} ({book.year})
           <ReactCountryFlag
-            countryCode="ua"
+            countryCode={book.countryCode.slice(0, 2)}
             aria-label={book.country}
             style={{ marginLeft: "0.5rem" }}
           />
@@ -50,7 +50,7 @@ export default function Book({ book }) {
         </Subtitle>
         <Genres>
           {book.genres.map((genre, key) => {
-            return <Genre key={key}>{genre}</Genre>;
+            return <Genre key={key}>{genre} · </Genre>;
           })}
         </Genres>
       </div>
@@ -62,12 +62,13 @@ export default function Book({ book }) {
               return (
                 <Link href={file.url} key={key}>
                   <MdDownload style={{ marginRight: "0.5rem" }} />
-                  Download {file.type} edution, format {file.extension}
+                  Download {file.type} edition, format {file.extension}
                 </Link>
               );
             })}
           </Downloads>
-        </Download>) : null}
+        </Download>
+      ) : null}
 
       <Info open={info}>
         <Text>{JSON.stringify(book, null, 2)}</Text>
@@ -83,8 +84,8 @@ const Container = styled.div`
   width: 100%;
   padding: 1rem;
   border-radius: 5px;
-  background-color: #141414;
-  color: white;
+  background-color: #ffc107;
+  color: #141414;
   height: 350px;
   position: relative;
   overflow: hidden;
@@ -118,16 +119,16 @@ const Genres = styled.ul`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+  margin: 0;
+  padding: 0;
 `;
 
 const Genre = styled.li`
   color: #141414;
-  margin-top: 0.5rem;
-  padding: 0.2rem 0.5rem;
-  background-color: white;
+  font-family: "Bebas Neue", cursive;
   border-radius: 5px;
+  font-size: 1.3rem;
   margin-right: 0.5rem;
-  font-weight: 900;
 `;
 
 const Download = styled.div`

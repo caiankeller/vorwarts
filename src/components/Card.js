@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export default function Card({ card }) {
   return (
@@ -21,18 +21,19 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%;
   padding: 1rem;
   border-radius: 5px;
   background-color: #141414;
   color: white;
-  ${props => props.title === "Library" && `background-image: url(vangogh.jpg); background-position: center 4.5rem; background-size: cover; background-repeat: no-repeat;`};
+  ${(props) =>
+    props.title === "Library" &&
+    `background-image: url(vangogh.jpg); background-position: center 4.5rem; background-size: cover; background-repeat: no-repeat;`};
   height: 350px;
   position: relative;
   overflow: hidden;
-
+  width: 30vw;
   @media only screen and (max-width: 540px) {
-    height: 250px;
+    width: 70vw;
   }
 `;
 

@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { GiBookshelf } from "react-icons/gi";
+import ScrollContainer from "react-indiana-drag-scroll";
+import styled from "styled-components";
 import Card from "./Card";
 
 export default function Home() {
@@ -13,6 +14,11 @@ export default function Home() {
       title: "Documentation",
       path: "/documentation",
       description: "Learn more about the project, the goals and how to help.",
+    },
+    {
+      title: "Dashboard",
+      path: "/dashboard",
+      description: "Create your account and help bring new books to Vorwärts.",
     },
   ];
   return (
@@ -38,7 +44,12 @@ export default function Home() {
   );
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+`;
 
 const Logo = styled.div`
   display: flex;
@@ -65,10 +76,17 @@ const Text = styled.p`
   }
 `;
 
-const Cards = styled.div`
+const Cards = styled(ScrollContainer)`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  overflow: scroll;
   grid-gap: 1rem;
   margin: 1rem 0;
   border-radius: 5px;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 `;

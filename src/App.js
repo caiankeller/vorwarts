@@ -1,10 +1,11 @@
+import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-
-import Home from "./components/Home";
+import Authentication from "./components/Authentication";
+import Dashboard from "./components/Dashboard";
 import Documentation from "./components/Documentation";
 import Header from "./components/Header";
+import Home from "./components/Home";
 import Library from "./components/Library";
-import { Routes, Route } from "react-router-dom";
 
 export default function App() {
   return (
@@ -13,8 +14,10 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/documentation" element={<Documentation />} />
-          <Route path="/library" element={<Library />} />
+          <Route path="documentation" element={<Documentation />} />
+          <Route path="library" element={<Library />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard/login" element={<Authentication />} />
         </Routes>
       </Box>
     </Container>
@@ -40,6 +43,7 @@ const Container = styled.div`
 const Box = styled.div`
   max-width: 1000px;
   width: 100%;
+  height: auto;
   padding: 1rem;
 
   @media only screen and (max-width: 766px) {

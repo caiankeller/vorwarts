@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Inconsolata:wght@300;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono&family=Inconsolata:wght@300;500;900&display=swap');
 html,
 #root,
 body {
@@ -6,6 +6,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
   font-family: 'Inconsolata', monospace;
+
 }
 
 * {

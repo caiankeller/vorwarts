@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import Book from "./Book";
 
 export default function Books({ books }) {

@@ -10,7 +10,6 @@ export default function Library() {
 
   useEffect(() => {
     var reg = new RegExp(book);
-
     var result = books.map((bk) => {
       return reg.test(bk.title) || reg.test(bk.author)
         ? { ...bk, show: true }
@@ -18,7 +17,7 @@ export default function Library() {
     });
 
     setBooks(result);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [book]);
 
   useEffect(() => {
@@ -42,6 +41,7 @@ export default function Library() {
         <GiBookshelf />
         Library
       </Title>
+      <Subtitle>Filter</Subtitle>
       <Form onSubmit={(e) => e.preventDefault()}>
         <Input
           type="text"
@@ -49,7 +49,6 @@ export default function Library() {
           value={book}
           onChange={(e) => setBook(e.target.value)}
         />
-        <Button type="submit">Search</Button>
       </Form>
       {books.length !== 0 && <Books books={books} />}
     </Container>
@@ -63,6 +62,11 @@ const Title = styled.h2`
   font-size: 1.5rem;
 `;
 
+const Subtitle = styled(Title)`
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+`;
+
 const Form = styled.form`
   display: flex;
   margin-top: 0.5rem;
@@ -73,18 +77,6 @@ const Input = styled.input`
   padding: 0.5rem;
   font-family: Inconsolata;
   outline: none;
-  margin-right: 1rem;
+  // margin-right: 1rem;
   width: 100%;
-`;
-
-const Button = styled.button`
-  padding: 0.5rem;
-  border: none;
-  background-color: #141414;
-  font-weight: 900;
-  color: white;
-  font-family: Inconsolata;
-  font-size: 1rem;
-  text-decoration: none;
-  border-radius: 5px;
 `;

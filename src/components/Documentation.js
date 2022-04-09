@@ -1,32 +1,71 @@
-import axios from "axios";
-import { useState } from "react";
 import { AiFillApi } from "react-icons/ai";
-import { MdClose, MdLightbulb, MdLightbulbOutline } from "react-icons/md";
+import { MdLightbulb } from "react-icons/md";
 import styled from "styled-components";
+import Endpoint from "../documentation/Endpoint";
+import axios from "axios";
 
 export default function Documentation() {
-  const [exemple, setExemple] = useState("//make and request :D");
-  const [got, setGot] = useState(false);
-
-  const code = `axios.get("https://vorwartsapi.herokuapp.com/books", {
-    params: {
-      author: "Johann Wolfgang von Goethe",
-      groupby: "author"
-    }
-  })`;
-
-  function gettingBooks() {
-    axios
-      .get("https://vorwartsapi.herokuapp.com/books", {
+  const endpoints = [
+    {
+      name: "/books",
+      description: "GET | Get books data.",
+      parameters: [
+        "Title",
+        "Author",
+        'Year | Year of publication. Ex.: "year": "1984".',
+        "Country | Stands for the country where the book was originally published.",
+        "language | Language originally written, the download options will usually be in the same language.",
+        "Genres | A slightly different field. To pass more than one gender, divide it into commas. Ex.: 'genres': 'Fantasy, Children's Book'.",
+        "Limit | Stands for limit of books per request. The default limitis 10.",
+        "Groupby | roup books by field. Try: author, genres, year, country or language. Ex.: 'groupby': 'author'.",
+        "Offset | Skip the first books.",
+      ],
+      code: `axios.get("https://vorwartsapi.herokuapp.com/books", {
         params: {
           author: "Johann Wolfgang von Goethe",
-          groupby: "author",
-        },
-      })
-      .then((results) => {
-        setExemple(results.data.data);
-      });
-  }
+          groupby: "author"
+        }
+      })`,
+      async request() {
+        return await axios
+          .get("https://vorwartsapi.herokuapp.com/books", {
+            params: {
+              author: "Johann Wolfgang von Goethe",
+              groupby: "author",
+            },
+          })
+          .then((re) => {
+            return re.data.data;
+          });
+      },
+    },
+    {
+      name: "/genres",
+      description: "GET | Get all genres.",
+      parameters: [],
+      code: `axios.get("https://vorwartsapi.herokuapp.com/genres")`,
+      async request() {
+        return await axios
+          .get("https://vorwartsapi.herokuapp.com/genres")
+          .then((re) => {
+            return re.data.data;
+          });
+      },
+    },
+    {
+      name: "/countries",
+      description: "GET | Get all countries.",
+      parameters: [],
+      code: `axios.get("https://vorwartsapi.herokuapp.com/countries")`,
+      async request() {
+        return await axios
+          .get("https://vorwartsapi.herokuapp.com/countries")
+          .then((re) => {
+            return re.data.data;
+          });
+      },
+    },
+  ];
 
   return (
     <Container>
@@ -44,82 +83,11 @@ export default function Documentation() {
         <MdLightbulb style={{ marginRight: "0.5rem" }} />
         Use this link do make requests.
       </Note>
-      <Hightlight>Authentication</Hightlight>
-      <Text>
-        <MdClose />
-        There is no authentication required or token.
-      </Text>
       <Hightlight>EndPoints</Hightlight>
       <Endpoints>
-        <Endpoint>
-          /books
-          <Append>
-            <Line>
-              <Tag>GET | Get books data.</Tag>
-            </Line>
-            <Text>All requests are sorted by author ascending.</Text>
-            <Hightlight>Parameters</Hightlight>
-            <Parameters>
-              <Parameter>
-                <Tag>Title</Tag>
-              </Parameter>
-              <Parameter>
-                <Tag>Author</Tag>
-              </Parameter>
-              <Parameter>
-                <Tag>Year | Year of publication. Ex.: "year": "1984".</Tag>
-              </Parameter>
-              <Parameter>
-                <Tag>
-                  Country | Stands for the country where the book was originally
-                  published.
-                </Tag>
-              </Parameter>
-              <Parameter>
-                <Tag>
-                  language | Language originally written, the download options
-                  will usually be in the same language.
-                </Tag>
-              </Parameter>
-              <Parameter>
-                <Tag>
-                  Genres | A slightly different field. To pass more than one
-                  gender, divide it into commas. Ex.: "genres": "Fantasy,
-                  Children's Book".
-                </Tag>
-              </Parameter>
-              <Parameter>
-                <Tag>
-                  Limit | Stands for limit of books per request. The default
-                  limit is 10.
-                </Tag>
-              </Parameter>
-              <Parameter>
-                <Tag>
-                  Groupby | roup books by field. Try: author, genres, year,
-                  country or language. Ex.: "groupby": "author".
-                </Tag>
-              </Parameter>
-              <Parameter>
-                <Tag>Offset | Skip the first books.</Tag>
-              </Parameter>
-            </Parameters>
-            <Hightlight>Basically...</Hightlight>
-            <Code>{code}</Code>
-            {console.log(got)}
-            <Button
-              disabled={got}
-              onClick={() => {
-                setExemple("fetching...");
-                gettingBooks();
-                setGot(true);
-              }}
-            >
-              Try it <MdLightbulbOutline style={{ marginLeft: "1rem" }} />
-            </Button>
-            <Code>{JSON.stringify(exemple, null, 2)}</Code>
-          </Append>
-        </Endpoint>
+        {endpoints.map((endpoint, key) => {
+          return <Endpoint {...endpoint} key={key} />;
+        })}
       </Endpoints>
     </Container>
   );
@@ -134,7 +102,7 @@ const Title = styled.h2`
 
 const Subtitle = styled(Title)`
   margin-top: 0.5rem;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 `;
 
 const Hightlight = styled(Title)`
@@ -184,76 +152,9 @@ const Note = styled(Text)`
   }
 `;
 
-const Code = styled.pre`
-  font-family: "IBM Plex Mono", monospace;
-  background-color: #141414;
-  color: white;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.5rem;
-  margin-top: 1rem;
-  white-space: pre-wrap; /* css-3 */
-  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
-  white-space: -pre-wrap; /* Opera 4-6 */
-  white-space: -o-pre-wrap; /* Opera 7 */
-  word-wrap: break-word;
-`;
-
 const Endpoints = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
   margin: 0.5rem 0;
-`;
-
-const Endpoint = styled.li`
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
-  border-radius: 5px;
-  font-weight: 900;
-`;
-
-const Tag = styled.div`
-  background-color: #40565e;
-  color: white;
-  padding: 0.5rem;
-  border-radius: 7px;
-  font-weight: 500;
-`;
-
-const Line = styled.div`
-  display: flex;
-  width: 100%;
-`;
-
-const Parameters = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin: 0.5rem 0;
-`;
-
-const Parameter = styled.li`
-  margin-top: 0.5rem;
-`;
-
-const Append = styled.div`
-  margin-top: 1rem;
-`;
-
-const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-  padding: 0.5rem;
-  border: none;
-  background-color: #141414;
-  color: white;
-  font-family: "IBM Plex Mono";
-  font-size: 1rem;
-  text-decoration: none;
-  border-radius: 5px;
 `;
