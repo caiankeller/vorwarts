@@ -24,17 +24,13 @@ export default function Book({ book }) {
             ) : (
               <MdInfo size="20" onClick={() => setInfo(!info)} />
             )}
-<<<<<<< HEAD
             {typeof book.files !== "undefined" && (
-=======
-            {typeof book.files !== "undefined" ? (
->>>>>>> c1eb675c11d01e23194d911529a81a866cb38d95
               <MdDownload
                 size="20"
                 style={{ marginLeft: "0.5rem" }}
                 onClick={() => setDownload(!download)}
               />
-            ) : null}
+            )}
           </div>
         </Title>
         <Author>{book.author}</Author>
@@ -59,29 +55,20 @@ export default function Book({ book }) {
         </Genres>
       </div>
 
-      {typeof book.files !== "undefined" ? (
+      {typeof book.files !== "undefined" && (
         <Download open={download}>
           <Downloads>
             {book.files.map((file, key) => {
               return (
                 <Link href={file.url} key={key}>
                   <MdDownload style={{ marginRight: "0.5rem" }} />
-<<<<<<< HEAD
                   Download {file.type} edition, format {file.extension}
-=======
-                  Download {file.type} edution, format {file.extension}
->>>>>>> c1eb675c11d01e23194d911529a81a866cb38d95
                 </Link>
               );
             })}
           </Downloads>
-<<<<<<< HEAD
         </Download>
-      ) : null}
-=======
-        </Download>) : null}
->>>>>>> c1eb675c11d01e23194d911529a81a866cb38d95
-
+      )}
       <Info open={info}>
         <Text>{JSON.stringify(book, null, 2)}</Text>
       </Info>
@@ -96,13 +83,8 @@ const Container = styled.div`
   width: 100%;
   padding: 1rem;
   border-radius: 5px;
-<<<<<<< HEAD
-  background-color: #ffc107;
-  color: #141414;
-=======
   background-color: #141414;
   color: white;
->>>>>>> c1eb675c11d01e23194d911529a81a866cb38d95
   height: 350px;
   position: relative;
   overflow: hidden;
@@ -142,13 +124,10 @@ const Genres = styled.ul`
 
 const Genre = styled.li`
   color: #141414;
-<<<<<<< HEAD
   font-family: "Bebas Neue", cursive;
-=======
   margin-top: 0.5rem;
   padding: 0.2rem 0.5rem;
   background-color: white;
->>>>>>> c1eb675c11d01e23194d911529a81a866cb38d95
   border-radius: 5px;
   font-size: 1.3rem;
   margin-right: 0.5rem;

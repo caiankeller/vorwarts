@@ -25,13 +25,7 @@ const Container = styled.div`
   border-radius: 5px;
   background-color: #141414;
   color: white;
-<<<<<<< HEAD
-  ${(props) =>
-    props.title === "Library" &&
-    `background-image: url(vangogh.jpg); background-position: center 4.5rem; background-size: cover; background-repeat: no-repeat;`};
-=======
   ${props => props.title === "Library" && `background-image: url(vangogh.jpg); background-position: center 4.5rem; background-size: cover; background-repeat: no-repeat;`};
->>>>>>> c1eb675c11d01e23194d911529a81a866cb38d95
   height: 350px;
   position: relative;
   overflow: hidden;
