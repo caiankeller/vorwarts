@@ -12,13 +12,7 @@ export default function Book({ book }) {
       <div>
         <Title>
           {book.title}
-          <div
-            style={{
-              display: "flex",
-              marginLeft: "0.5rem",
-              zIndex: 1,
-            }}
-          >
+          <Menu light={download || info ? true : false}>
             {info ? (
               <MdClose size="20" onClick={() => setInfo(!info)} />
             ) : (
@@ -31,11 +25,10 @@ export default function Book({ book }) {
                 onClick={() => setDownload(!download)}
               />
             )}
-          </div>
+          </Menu>
         </Title>
         <Author>{book.author}</Author>
       </div>
-
       <div>
         <Subtitle>
           {book.country} ({book.year})
@@ -55,20 +48,24 @@ export default function Book({ book }) {
         </Genres>
       </div>
 
-      {typeof book.files !== "undefined" && (
-        <Download open={download}>
-          <Downloads>
-            {book.files.map((file, key) => {
-              return (
-                <Link href={file.url} key={key}>
-                  <MdDownload style={{ marginRight: "0.5rem" }} />
-                  Download {file.type} edition, format {file.extension}
-                </Link>
-              );
-            })}
-          </Downloads>
-        </Download>
-      )}
+      <Download open={download}>
+        {book.files.length === 0 && (
+          <Subtitle style={{ color: "#ffc107" }}>
+            There's no download options yet.
+          </Subtitle>
+        )}
+        <Downloads>
+          {book.files.map((file, key) => {
+            return (
+              <Link href={file.url} key={key}>
+                <MdDownload style={{ marginRight: "0.5rem" }} />
+                Download {file.type} edition, format {file.extension}
+              </Link>
+            );
+          })}
+        </Downloads>
+      </Download>
+
       <Info open={info}>
         <Text>{JSON.stringify(book, null, 2)}</Text>
       </Info>
@@ -83,8 +80,8 @@ const Container = styled.div`
   width: 100%;
   padding: 1rem;
   border-radius: 5px;
-  background-color: #141414;
-  color: white;
+  background-color: #ffc107;
+  color: #141414;
   height: 350px;
   position: relative;
   overflow: hidden;
@@ -126,8 +123,6 @@ const Genre = styled.li`
   color: #141414;
   font-family: "Bebas Neue", cursive;
   margin-top: 0.5rem;
-  padding: 0.2rem 0.5rem;
-  background-color: white;
   border-radius: 5px;
   font-size: 1.3rem;
   margin-right: 0.5rem;
@@ -137,13 +132,13 @@ const Download = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 2rem 1rem 1rem 1rem;
+  padding: 2.5rem 1rem 1rem 1rem;
   border-radius: 5px;
   position: absolute;
   top: ${(props) => (props.open ? 0 : "100%")};
   left: 0;
   background: #141414;
-  color: white;
+  color: #ffc107;
   border: 1px solid white;
   transition: all 150ms ease-out;
   opacity: ${(props) => (props.open ? 1 : 0)};
@@ -156,7 +151,7 @@ const Downloads = styled.div``;
 const Link = styled.a`
   display: flex;
   align-items: center;
-  color: white;
+  color: #ffc107;
   font-weight: 900;
 `;
 
@@ -177,4 +172,11 @@ const Text = styled.pre`
   white-space: -pre-wrap; /* Opera 4-6 */
   white-space: -o-pre-wrap; /* Opera 7 */
   word-wrap: break-word;
+`;
+
+const Menu = styled.div`
+  display: flex;
+  margin-left: 0.7rem;
+  z-index: 1;
+  color: ${(props) => (props.light ? "#ffc107" : "#141414")};
 `;
