@@ -1,164 +1,349 @@
-# [**Vorwärts**](https://vorwarts.herokuapp.com)
+# [**Vorwärts**](https://vorwarts.vercel.app)
 
-Vorwärts is not yet released or in its final state. And it will only be launched when a better way to support community contribution is created. However, the API and library as well as the already hosted books are available.
+>
 
 ```json
 {
-	"status": 200,
-	"ok": true,
-	"data": [
-		{
-			"author": "Johann Wolfgang von Goethe",
-			"books": [
-				{
-					"downloads": [],
-					"_id": "61ba1d7e24a1157ef54f1220",
-					"title": "The Sorrows of Young Werther",
-					"author": "Johann Wolfgang von Goethe",
-					"genres": [
-						"Epistolary novel"
-					],
-					"language": "German",
-					"country": "Germany",
-					"year": 1774
-				}
-			]
-		}
-	]
+  "status": 200,
+  "ok": true,
+  "data": [
+    {
+      "_id": "61ba1b7024a1157ef54f121d",
+      "title": "Alice's Adventures in the Wonderland",
+      "author": "Lewis Carroll",
+      "language": "English",
+      "genres": ["Fantasy", "Literary nonsense"],
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "year": 1865,
+      "files": [
+        {
+          "type": "Vorwärts",
+          "extension": "epub",
+          "url": "https://raw.githubusercontent.com/vonweinKeller/vorwarts-library/main/alice/Alice'sAdventuresinWonderland.epub"
+        }
+      ],
+      "user": "caian"
+    }
+  ]
 }
 ```
 
-## **Why?** 
+## **Why?**
 
-Vorwärts was born to be an easy way to get books in the public domain, free of any publicity and completely transparent. The ideology of Vorwärts is to maintain the neutrality of all these books written by incredible authors and which now belong to everyone.
+Vorwärts was born to be an easy way to get books in the public domain, free of any advertising and in a completely transparent way. The ideology of Vorwärts is to maintain the neutrality of all these books written by amazing authors and that now belong to everyone.
 
-# **Start Using the API**
+# **Getting started**
 
-## **Root**
+## **URL**
 
 **`https://vorwartsapi.herokuapp.com`**
 
 ## **EndPoints**
 
 - [x] /books
-- [ ] /genres
-- [ ] /authors
-- [ ] /years...
+- [x] /book
+- [x] /genres
+- [x] /countries
+- [x] /signup
+- [x] /login
+      ...
 
-Well, so...
+## **Public endpoints**
 
 ### **/books**
+
 `GET` | Get books data.
 
->All requests are sorted by author ascending..
+> All requests are sorted by author ascending..
 
-**params**
+**parameters**
 
-Optional parameters
+`Title`
 
-* `Title`
-* `Author`
-* `Year` *Year of publication. Ex.: {"year": "1984"}.*
-* `Country` *Stands for the country where the book was originally published. The short version of the name should be used. Ex.: {"country": "Germany"}.*
-* `Language` *Language originally written, the download options will usually be in the same language.* 
-* `Genres` *A slightly different field. To pass more than one gender, divide it into commas. Ex.: {"genres": "Fantasy, Children's Book"}.*
-* `Limit` *Stands for limit of books per request. The default limit is 10.*
-* `Offset` *Skip the first books.*
-* `Groupby` *Group books by field. Try: author, genres, year, country or language. Ex.: {"groupby": "author"}.*
+`Author`
 
-Required parameters
+`Year` _Year of publication. E.g.: {"year": "1984"}._
 
-* There are no required parameters here, not even tokens or rate limits (For now, be kind and respectful).
+`Country` _Stands for the country where the book was originally published. The short version of the name should be used. E.g.: {"country": "Germany"}._
 
-### **Basically**
+`Language` _Language originally written, the download options will usually be in the same language._
+
+`Genres` _A slightly different field. To pass more than one gender, divide it into commas. E.g.: {"genres": "Fantasy, Children's Book"}._
+
+`Limit` _Stands for limit of books per request. The default limit is 10._
+
+`Offset` _Skip the first books._
+
+`Groupby` _Group books by field. Try: author, genres, year, country or language. E.g.: {"groupby": "author"}._
+
+### **Exemple**
 
 ```javascript
 axios.get("https://vorwartsapi.herokuapp.com/books", {
-    params: {
-      author: "Johann Wolfgang von Goethe",
-      groupby: "author"
+  parameters: {
+    author: "Johann Wolfgang von Goethe",
+    groupby: "author",
+  },
+});
+```
+
+### **Response**
+
+```json
+{
+  "status": 200,
+  "ok": true,
+  "data": [
+    {
+      "author": "Johann Wolfgang von Goethe",
+      "books": [
+        {
+          "_id": "61ba1d7e24a1157ef54f1220",
+          "title": "The Sorrows of Young Werther",
+          "author": "Johann Wolfgang von Goethe",
+          "genres": ["Epistolary novel"],
+          "language": "German",
+          "country": "Germany",
+          "year": 1774,
+          "countryCode": "DE",
+          "user": "caian",
+          "files": []
+        }
+      ]
     }
-  })
-```
-
-### **If everything goes well, expect something like that**
-
-```json
-{
-	"status": 200,
-	"ok": true,
-	"data": [
-		{
-			"author": "Johann Wolfgang von Goethe",
-			"books": [
-				{
-					"downloads": [],
-					"_id": "61ba1d7e24a1157ef54f1220",
-					"title": "The Sorrows of Young Werther",
-					"author": "Johann Wolfgang von Goethe",
-					"genres": [
-						"Epistolary novel"
-					],
-					"language": "German",
-					"country": "Germany",
-					"year": 1774
-				}
-			]
-		}
-	]
+  ]
 }
 ```
 
-### **If it not.. 😳**
+### **/countries**
 
-`404` This means that the application has not found any books in these specifications. The params are case-sensitive, so, caution.
+`GET` | Get countries with books available.
 
-`406` This means that the 'groupby' selected attribute is not enabled.
+**parameters**
 
-But we response with a nice json saying what exactly happened.
+> No parameters are available.
+
+### **Response**
 
 ```json
 {
-	"status": 400,
-	"ok": false,
-	"message": "no book has found"
+  "status": 200,
+  "ok": true,
+  "data": [
+    "United Kingdom",
+    "Italy",
+    "Germany",
+    "Portugal",
+    "Russian Federation"
+  ]
 }
 ```
 
-## **"I want to help"**
+### **/genres**
 
-* ### **"I program":**
+`GET` | Get all genres in the database.
 
-😮‍💨 Ufa.
+**parameters**
 
-Just make a pull request. I don't know how to manage a project. But as soon as possible, I will deploy it on Heroku. The project follows the MVC pattern. You only need to configure the dotenv file and start coding.
- 
-.env:
-`BD_URL=`
+> No parameters are available.
 
-`node src/app.js` or  `yarn run start` to run.
+### **Response**
+
+```json
+{
+  "status": 200,
+  "ok": true,
+  "data": [
+    "Fantasy",
+    "Literary nonsense",
+    "Children's book",
+    "Epistolary novel",
+    "Gothic novel",
+    "Horror fiction",
+    "Horror",
+    "Gothic",
+    "Absurdist fiction",
+    "Fiction",
+    "Mystery",
+    "Epic Poetry",
+    "Philosophical Novel",
+    "Psychological Fiction",
+    "Crime Fiction",
+    "Classic",
+    "Regency Novel"
+  ]
+}
+```
+
+## **Institutional endpoints**
+
+> They, unlikely public ones, affects the database.
+
+### **/signup**
+
+`POST` | Post an user in the database.
+
+**parameters**
+
+`Username` _At least 4 characters longer._
+
+`Email`
+
+`Password` _This will be encrypted._
+
+### **Exemple**
+
+```javascript
+axios.post("https://vorwartsapi.herokuapp.com/signup", {
+  username: "Johann Wolfgang von Goethe",
+  email: "goethe@gmail.com",
+  password: "hyper secure password",
+});
+```
+
+### **Response**
+
+```json
+{ "status": 201, "ok": true }
+```
+
+### **/login**
+
+`GET` | Make authentication in passed credentials.
+
+**parameters**
+
+`Username`
+
+`Password`
+
+### **Exemple**
+
+```javascript
+axios.get("https://vorwartsapi.herokuapp.com/login", {
+  parameters: {
+    username: "Johann Wolfgang von Goethe",
+    password: "hyper secure password",
+  },
+});
+```
+
+### **Response**
+
+```json
+{
+  "status": 200,
+  "ok": true,
+  "message": "user authenticated",
+  "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUxZGVhZTI3NDZkNTc4ZDVjZDkyNDIiLCJpYXQiOjE2NDk1MzM1MjEsImV4cCI6MTY0OTYxOTkyMX0.LnT2VN9xYRzQGOWKc1RglIgScRI5_mYaEX6eIV_wwWg",
+  "username": "Johann Wolfgang von Goethe",
+  "email": "goethe@gmail.com"
+}
+```
+
+### **/token**
+
+`GET` | Creates a token. _This token longer for 1 week_
+
+> This method will soon be improved by creating a token manager.
+
+**parameters**
+
+`Token` _Pass the current token throught headers as "authorization"_
+
+### **Exemple**
+
+```javascript
+axios.get("https://vorwartsapi.herokuapp.com/token", {
+  headers: {
+    authorization:
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUxZGVhZTI3NDZkNTc4ZDVjZDkyNDIiLCJpYXQiOjE2NDk1MzM1MjEsImV4cCI6MTY0OTYxOTkyMX0.LnT2VN9xYRzQGOWKc1RglIgScRI5_mYaEX6eIV_wwWg",
+  },
+});
+```
+
+### **Response**
+
+```json
+{
+  "status": 201,
+  "ok": true,
+  "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRlNGQxODk0MDdiNTE2OThmZDk3NDkiLCJpYXQiOjE2NDk3MDQ0NDMsImV4cCI6MTY0OTc5MDg0M30.F_qLlM5aQGUjnPH_sMevG5YrKRoEzLQ5uWZ-6pnFveQ"
+}
+```
+
+### **/book**
+
+`POST` | Publish a book in the database.
+
+> File uploads are not available yet.
+
+**parameters**
+
+`Token` _Pass the current through the headers as "authorization"._
+
+`Title`
+
+`Author`
+
+`Year`
+
+`Country` _Tends to write in English, the standart is available [here](https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/)._
+
+`CountryCode` _In Alpha 2. E.g.: US for United States or GB for United Kingdom ([see more](https://www.iban.com/country-codes))._
+
+`Language` _Tends to write in English, the standart is available [here](https://gist.github.com/jrnk/8eb57b065ea0b098d571)._
+
+`Genres` _Array, E.g: ["fantasy", "children's book"]._
+
+### **Exemple**
+
+```javascript
+axios.get("https://vorwartsapi.herokuapp.com/login", {
+    title: "The Sorrows of Young Werther",
+    author: "Johann Wolfgang von Goethe",
+    year: "1774",
+    country: "Germany",
+    countryCode: "DE",
+    language: "German",
+	    "genres": [
+        "Epistolary novel"
+    ]},
+		headers: {
+			"authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUxZGVhZTI3NDZkNTc4ZDVjZDkyNDIiLCJpYXQiOjE2NDk1MzM1MjEsImV4cCI6MTY0OTYxOTkyMX0.LnT2VN9xYRzQGOWKc1RglIgScRI5_mYaEX6eIV_wwWg",
+        }
+	})
+```
+
+### **Response**
+
+```json
+{
+  "status": 201,
+  "ok": true,
+  "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRlNGQxODk0MDdiNTE2OThmZDk3NDkiLCJpYXQiOjE2NDk3MDQ0NDMsImV4cCI6MTY0OTc5MDg0M30.F_qLlM5aQGUjnPH_sMevG5YrKRoEzLQ5uWZ-6pnFveQ"
+}
+```
+
+## **How to configure the project**
+
+This is a simple MVC server in Node, you won't be lost.
+
+Set `.env` file with
 
 ```
-± yarn start
-yarn run v1.22.11
-$ node src/app.js
-We've taken off 🛫 on 3001 port
+BD_URL={mongoose database url}
+JSON_WEB_TOKEN_KEY=//any string of your choice
 ```
 
-* ### **"I don't program":**
+Use `npm start` or `node src/app.js`
 
-We'll be back for you, I promise <3. Since you're on GitHub, if you know how to commit, any help with bringing new books to Vorwärts is welcome in the [library](https://github.com/vonweinkeller/vorwarts-library) repository. Just be careful and pay attention to whether the book is in the public domain and whether there is copyright on the translation.
+```
+▲ npm start
 
-## **Issues**
+> vorwarts@1.0.0 start
+> node src/app.js
 
-- [ ] All parameters are case-sensitive, which makes the request more likely to respond with no results A solution will be implemented as soon as I figure out a good solution.
-- [ ] Find bugs to put here.
-
-> Is it worth it? Everything is worth the effort<br>
-> If the soul isn't small.<br>
-> Who wants to pass beyond Bojador<br>
-> Must first pass beyond the suffering.<br>
-> God gave to the sea danger and the abyss,<br>
-> But in it lies what the sky mirrored.<br>
-
-**Fernando Pessoa, Portuguese Sea**.
+We've taken off 🛫 on 4000 port
+```

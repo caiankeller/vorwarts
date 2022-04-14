@@ -3,12 +3,12 @@ import ReactCountryFlag from "react-country-flag";
 import { MdClose, MdDownload, MdInfo, MdLanguage } from "react-icons/md";
 import styled from "styled-components";
 
-export default function Book({ book }) {
+export default function Book({ book, width }) {
   const [download, setDownload] = useState(false);
   const [info, setInfo] = useState(false);
 
   return (
-    <Container>
+    <Container width={width}>
       <div>
         <Title>
           {book.title}
@@ -77,7 +77,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%;
+  width: ${(props) => (props.width ? props.width : "100%")};
   padding: 1rem;
   border-radius: 5px;
   background-color: #ffc107;
@@ -91,7 +91,7 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled.h2`
+const Title = styled.h1`
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -99,11 +99,12 @@ const Title = styled.h2`
   text-align: justify;
 `;
 
-const Subtitle = styled(Title)`
+const Subtitle = styled.h2`
   font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: start;
+  font-size: 1rem;
 `;
 
 const Author = styled.h3`

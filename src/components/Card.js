@@ -25,7 +25,6 @@ const Container = styled.div`
   border-radius: 5px;
   background-color: #141414;
   color: white;
-  ${props => props.title === "Library" && `background-image: url(vangogh.jpg); background-position: center 4.5rem; background-size: cover; background-repeat: no-repeat;`};
   height: 350px;
   position: relative;
   overflow: hidden;
@@ -35,8 +34,7 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled.h2`
-  display: flex;
+const Title = styled.h1`  display: flex;
   justify-content: space-between;
   width: 100%;
   font-size: 1rem;

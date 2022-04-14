@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { MdLightbulbOutline } from "react-icons/md";
+import { AiFillCaretRight, AiFillCaretDown } from "react-icons/ai";
 
 export default function Endpoint({
   name,
@@ -8,14 +9,23 @@ export default function Endpoint({
   parameters,
   code,
   request,
+  response,
 }) {
   const [exemple, setExemple] = useState("//make and request :D");
   const [got, setGot] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Container>
-      {name}
-      <Append>
+      <Hightlight>
+        {isOpen ? (
+          <AiFillCaretDown onClick={() => setIsOpen(!isOpen)} />
+        ) : (
+          <AiFillCaretRight onClick={() => setIsOpen(!isOpen)} />
+        )}
+        {name}
+      </Hightlight>
+      <Append isOpen={isOpen}>
         <Line>
           <Tag>{description}</Tag>
         </Line>
@@ -28,23 +38,28 @@ export default function Endpoint({
               </Parameter>
             );
           })}
-          {parameters.length === 0 && <Text>No parameters</Text>}
+          {parameters.length === 0 && <Text>No parameters available.</Text>}
         </Parameters>
         <Hightlight>Basically...</Hightlight>
         <Code>{code}</Code>
-        <Button
-          disabled={got}
-          onClick={async () => {
-            setExemple("fetching...");
-            const response = await request();
-            setExemple(response);
-            console.log(response);
-            setGot(true);
-          }}
-        >
-          Try it <MdLightbulbOutline style={{ marginLeft: "1rem" }} />
-        </Button>
-        <Code>{JSON.stringify(exemple, null, 2)}</Code>
+        {typeof request !== "undefined" ? (
+          <>
+            <Button
+              disabled={got}
+              onClick={async () => {
+                setExemple("fetching...");
+                const response = await request();
+                setExemple(response);
+                setGot(true);
+              }}
+            >
+              Try it <MdLightbulbOutline style={{ marginLeft: "1rem" }} />
+            </Button>
+            <Code>{JSON.stringify(exemple, null, 2)}</Code>
+          </>
+        ) : (
+          <Code>{response}</Code>
+        )}
       </Append>
     </Container>
   );
@@ -58,8 +73,7 @@ const Container = styled.li`
   font-weight: 900;
 `;
 
-const Title = styled.h2`
-  margin-top: 1rem;
+const Title = styled.h1`  margin-top: 1rem;
   font-size: 1.5rem;
 `;
 
@@ -75,6 +89,7 @@ const Parameter = styled.li`
 `;
 
 const Append = styled.div`
+  display: ${(props) => (props.isOpen ? "block" : "none")};
   margin-top: 1rem;
 `;
 
@@ -134,6 +149,8 @@ const Text = styled.p`
 `;
 
 const Hightlight = styled(Title)`
+  display: flex;
+  align-items: center;
   margin-top: 1rem;
   font-size: 1.1rem;
 `;

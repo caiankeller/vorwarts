@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-export default function Input({ name, type, minimumLength, handlingValues }) {
+export default function Input({
+  name,
+  type,
+  minimumLength,
+  handlingValues,
+  ...rest
+}) {
   const [value, setValue] = useState("");
 
   useEffect(() => {
@@ -11,6 +17,7 @@ export default function Input({ name, type, minimumLength, handlingValues }) {
 
   return (
     <Container
+      {...rest}
       type={type}
       onChange={(e) => {
         setValue(e.target.value);

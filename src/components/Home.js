@@ -21,6 +21,7 @@ export default function Home() {
       description: "Create your account and help bring new books to Vorwärts.",
     },
   ];
+
   return (
     <Container style={{ marginTop: "1rem" }}>
       <div>
@@ -82,9 +83,12 @@ const Cards = styled(ScrollContainer)`
   width: 100%;
   overflow: scroll;
   grid-gap: 1rem;
-  margin: 1rem 0;
   border-radius: 5px;
   cursor: grab;
+
+  @media only screen and (max-width: 540px) {
+    grid-gap: 0.5rem;
+  }
 
   &:active {
     cursor: grabbing;

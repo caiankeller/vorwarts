@@ -10,10 +10,10 @@ export default function Library() {
 
   useEffect(() => {
     var reg = new RegExp(book);
-    var result = books.map((bk) => {
-      return reg.test(bk.title) || reg.test(bk.author)
-        ? { ...bk, show: true }
-        : { ...bk, show: false };
+    var result = books.map((book) => {
+      return reg.test(book.title) || reg.test(book.author)
+        ? { ...book, show: true }
+        : { ...book, show: false };
     });
 
     setBooks(result);
@@ -25,8 +25,8 @@ export default function Library() {
       await axios
         .get("https://vorwartsapi.herokuapp.com/books")
         .then((result) => {
-          result = result.data.data.map((bk) => {
-            return { ...bk, show: true };
+          result = result.data.data.map((book) => {
+            return { ...book, show: true };
           });
           setBooks(result);
         });
@@ -57,13 +57,11 @@ export default function Library() {
 
 const Container = styled.div``;
 
-const Title = styled.h2`
-  margin-top: 1rem;
+const Title = styled.h1`  margin-top: 1rem;
   font-size: 1.5rem;
 `;
 
-const Subtitle = styled(Title)`
-  margin-top: 0.5rem;
+const Subtitle = styled.h2`  margin-top: 0.5rem;
   font-size: 1.2rem;
 `;
 

@@ -4,7 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 
 export default function Authentication() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
 
   return (
     <Container>
@@ -19,8 +19,7 @@ export default function Authentication() {
 
 const Container = styled.div``;
 
-const Title = styled.h2`
-  margin-top: 1rem;
+const Title = styled.h1`  margin-top: 1rem;
   font-size: 1.5rem;
 `;
 

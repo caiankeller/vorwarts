@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono&family=Inconsolata:wght@300;500;900&display=swap');
-html,
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono&family=Inconsolata:wght@300;500;900&family=Inter&display=swap');html,
 #root,
 body {
   -webkit-font-smoothing: antialiased;

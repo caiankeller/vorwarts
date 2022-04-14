@@ -36,7 +36,6 @@ export default function Login() {
           })
         );
         navigate("/dashboard");
-        setIsLoading(false);
       })
       .catch((er) => {
         setStatus({ status: true, message: er.response.data.message });
@@ -61,7 +60,7 @@ export default function Login() {
           value={password}
         />
         <Button disabled={isLoading} type="submit" onClick={(e) => login(e)}>
-          Login{" "}
+          Login
           {isLoading && <Loading>{<AiOutlineLoading3Quarters />}</Loading>}
         </Button>
       </Form>
@@ -90,9 +89,10 @@ const rotate = keyframes`
   }
 `;
 
-const Loading = styled(AiOutlineLoading3Quarters)`
+const Loading = styled.div`
   font-size: 0.8rem;
-  animation: ${rotate} 0.5 linear infinite;
+  margin-left: 0.5rem;
+  animation: ${rotate} 0.8s linear infinite;
 `;
 
 const Container = styled.div`
@@ -100,13 +100,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.h2`
-  margin-top: 1rem;
-  font-weight: 500;
-  font-size: 1.5rem;
-`;
-
-const Subtitle = styled(Title)`
+const Subtitle = styled.h2`
   margin-top: 0.5rem;
   font-size: 1.2rem;
 `;
@@ -129,6 +123,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
+  display: flex;
   margin-top: 1rem;
   padding: 0.5rem;
   border: none;

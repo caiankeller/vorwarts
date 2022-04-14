@@ -96,12 +96,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.h2`
-  margin-top: 1rem;
-  font-size: 1.5rem;
-`;
-
-const Subtitle = styled(Title)`
+const Subtitle = styled.h2`
   margin-top: 0.5rem;
   font-weight: 500;
   font-size: 1.2rem;

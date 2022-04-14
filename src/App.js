@@ -6,6 +6,7 @@ import Documentation from "./components/Documentation";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Library from "./components/Library";
+import PrivateRoute from "./components/helper/PrivateRoute";
 
 export default function App() {
   return (
@@ -14,10 +15,17 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="documentation" element={<Documentation />} />
-          <Route path="library" element={<Library />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="dashboard/login" element={<Authentication />} />
+          <Route path="/documentation" element={<Documentation />} />
+          <Route path="/library" element={<Library />} />
+          <Route path="/login" element={<Authentication />} />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </Box>
     </Container>
