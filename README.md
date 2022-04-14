@@ -1,7 +1,5 @@
 # [**Vorwärts**](https://vorwarts.vercel.app)
 
->
-
 ```json
 {
   "status": 200,
@@ -324,26 +322,4 @@ axios.get("https://vorwartsapi.herokuapp.com/login", {
   "ok": true,
   "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRlNGQxODk0MDdiNTE2OThmZDk3NDkiLCJpYXQiOjE2NDk3MDQ0NDMsImV4cCI6MTY0OTc5MDg0M30.F_qLlM5aQGUjnPH_sMevG5YrKRoEzLQ5uWZ-6pnFveQ"
 }
-```
-
-## **How to configure the project**
-
-This is a simple MVC server in Node, you won't be lost.
-
-Set `.env` file with
-
-```
-BD_URL={mongoose database url}
-JSON_WEB_TOKEN_KEY=//any string of your choice
-```
-
-Use `npm start` or `node src/app.js`
-
-```
-▲ npm start
-
-> vorwarts@1.0.0 start
-> node src/app.js
-
-We've taken off 🛫 on 4000 port
 ```
