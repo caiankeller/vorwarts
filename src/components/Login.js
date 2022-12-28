@@ -21,7 +21,7 @@ export default function Login() {
     setIsLoading(true);
 
     axios
-      .get("https://vorwartsapi.herokuapp.com/login", {
+      .get("https://vorwarts-api.vercel.app/login", {
         params: {
           username: username,
           password: password,

@@ -20,7 +20,7 @@ export default function Documentation() {
         "Groupby | roup books by field. Try: author, genres, year, country or language. E.g.: 'groupby': 'author'.",
         "Offset | Skip the first books.",
       ],
-      code: `axios.get("https://vorwartsapi.herokuapp.com/books", {
+      code: `axios.get("https://vorwarts-api.vercel.app/books", {
         params: {
           author: "Johann Wolfgang von Goethe",
           groupby: "author"
@@ -28,7 +28,7 @@ export default function Documentation() {
       })`,
       async request() {
         return await axios
-          .get("https://vorwartsapi.herokuapp.com/books", {
+          .get("https://vorwarts-api.vercel.app/books", {
             params: {
               author: "Johann Wolfgang von Goethe",
               groupby: "author",
@@ -43,10 +43,10 @@ export default function Documentation() {
       name: "/genres",
       description: "GET | Get all genres.",
       parameters: [],
-      code: `axios.get("https://vorwartsapi.herokuapp.com/genres")`,
+      code: `axios.get("https://vorwarts-api.vercel.app/genres")`,
       async request() {
         return await axios
-          .get("https://vorwartsapi.herokuapp.com/genres")
+          .get("https://vorwarts-api.vercel.app/genres")
           .then((re) => {
             return re.data.data;
           });
@@ -56,10 +56,10 @@ export default function Documentation() {
       name: "/countries",
       description: "GET | Get all countries.",
       parameters: [],
-      code: `axios.get("https://vorwartsapi.herokuapp.com/countries")`,
+      code: `axios.get("https://vorwarts-api.vercel.app/countries")`,
       async request() {
         return await axios
-          .get("https://vorwartsapi.herokuapp.com/countries")
+          .get("https://vorwarts-api.vercel.app/countries")
           .then((re) => {
             return re.data.data;
           });
@@ -72,7 +72,7 @@ export default function Documentation() {
       name: "/signup",
       description: "POST | Create a new user.",
       parameters: ["username", "email", "password"],
-      code: `axios.post("https://vorwartsapi.herokuapp.com/signup", {
+      code: `axios.post("https://vorwarts-api.vercel.app/signup", {
         username: "Johann Wolfgang von Goethe",
         email: "goethe@gmail.com",
         password: "hyper secure password"
@@ -83,7 +83,7 @@ export default function Documentation() {
       name: "/login",
       description: "GET | Authenticate an user.",
       parameters: ["username", "password"],
-      code: `axios.get("https://vorwartsapi.herokuapp.com/login", {
+      code: `axios.get("https://vorwarts-api.vercel.app/login", {
         params: {
           username: "Johann Wolfgang von Goethe",
           password: "hyper secure password"
@@ -111,7 +111,7 @@ export default function Documentation() {
         "Language | Tends to write in English, the standart is available",
         "genres | Array, E.g: ['Fantasy', 'Children's Book']",
       ],
-      code: `axios.get("https://vorwartsapi.herokuapp.com/login", {
+      code: `axios.get("https://vorwarts-api.vercel.app/login", {
         title: "The Sorrows of Young Werther",
         author: "Johann Wolfgang von Goethe",
         year: "1774",
@@ -143,7 +143,7 @@ export default function Documentation() {
       <Subtitle>Getting Started</Subtitle>
       <Warning>
         <AiFillApi style={{ marginRight: "0.5rem" }} />
-        https://vorwartsapi.herokuapp.com
+        https://vorwarts-api.vercel.app
       </Warning>
       <Note>
         <MdLightbulb style={{ marginRight: "0.5rem" }} />

@@ -30,7 +30,7 @@ export default function AddBook({ token, isOpen }) {
 
     axios
       .post(
-        "https://vorwartsapi.herokuapp.com/book",
+        "https://vorwarts-api.vercel.app/book",
         {
           ...values,
           country,

@@ -20,7 +20,7 @@ export default function DashboardOptions() {
 
   function createToken() {
     axios
-      .get("https://vorwartsapi.herokuapp.com/token", {
+      .get("https://vorwarts-api.vercel.app/token", {
         headers: { authorization: user.token },
       })
       .then((result) => {

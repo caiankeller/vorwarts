@@ -16,7 +16,7 @@ export default function Register() {
     e.preventDefault();
 
     axios
-      .post("https://vorwartsapi.herokuapp.com/signup", {
+      .post("https://vorwarts-api.vercel.app/signup", {
         username: values.username,
         password: values.password,
         email: values.email,

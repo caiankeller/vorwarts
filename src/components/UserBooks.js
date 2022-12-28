@@ -13,7 +13,7 @@ export default function UserBook({ user }) {
   useEffect(() => {
     async function gettingBooks() {
       await axios
-        .get("https://vorwartsapi.herokuapp.com/books", {
+        .get("https://vorwarts-api.vercel.app/books", {
           params: { user: user.username },
         })
         .then((result) => {

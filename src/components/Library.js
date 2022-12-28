@@ -23,7 +23,7 @@ export default function Library() {
   useEffect(() => {
     async function gettingBooks() {
       await axios
-        .get("https://vorwartsapi.herokuapp.com/books")
+        .get("https://vorwarts-api.vercel.app/books")
         .then((result) => {
           result = result.data.data.map((book) => {
             return { ...book, show: true };

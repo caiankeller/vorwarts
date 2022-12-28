@@ -35,7 +35,7 @@ Vorwärts was born to be an easy way to get books in the public domain, free of 
 
 ## **URL**
 
-**`https://vorwartsapi.herokuapp.com`**
+**`https://vorwarts-api.vercel.app`**
 
 ## **EndPoints**
 
@@ -78,7 +78,7 @@ Vorwärts was born to be an easy way to get books in the public domain, free of 
 ### **Exemple**
 
 ```javascript
-axios.get("https://vorwartsapi.herokuapp.com/books", {
+axios.get("https://vorwarts-api.vercel.app/books", {
   parameters: {
     author: "Johann Wolfgang von Goethe",
     groupby: "author",
@@ -193,7 +193,7 @@ axios.get("https://vorwartsapi.herokuapp.com/books", {
 ### **Exemple**
 
 ```javascript
-axios.post("https://vorwartsapi.herokuapp.com/signup", {
+axios.post("https://vorwarts-api.vercel.app/signup", {
   username: "Johann Wolfgang von Goethe",
   email: "goethe@gmail.com",
   password: "hyper secure password",
@@ -219,7 +219,7 @@ axios.post("https://vorwartsapi.herokuapp.com/signup", {
 ### **Exemple**
 
 ```javascript
-axios.get("https://vorwartsapi.herokuapp.com/login", {
+axios.get("https://vorwarts-api.vercel.app/login", {
   parameters: {
     username: "Johann Wolfgang von Goethe",
     password: "hyper secure password",
@@ -253,7 +253,7 @@ axios.get("https://vorwartsapi.herokuapp.com/login", {
 ### **Exemple**
 
 ```javascript
-axios.get("https://vorwartsapi.herokuapp.com/token", {
+axios.get("https://vorwarts-api.vercel.app/token", {
   headers: {
     authorization:
       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUxZGVhZTI3NDZkNTc4ZDVjZDkyNDIiLCJpYXQiOjE2NDk1MzM1MjEsImV4cCI6MTY0OTYxOTkyMX0.LnT2VN9xYRzQGOWKc1RglIgScRI5_mYaEX6eIV_wwWg",
@@ -298,7 +298,7 @@ axios.get("https://vorwartsapi.herokuapp.com/token", {
 ### **Exemple**
 
 ```javascript
-axios.get("https://vorwartsapi.herokuapp.com/login", {
+axios.get("https://vorwarts-api.vercel.app/login", {
     title: "The Sorrows of Young Werther",
     author: "Johann Wolfgang von Goethe",
     year: "1774",
