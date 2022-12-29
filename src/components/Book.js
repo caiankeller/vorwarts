@@ -50,7 +50,7 @@ export default function Book({ book, width }) {
 
       <Download open={download}>
         {book.files.length === 0 && (
-          <Subtitle style={{ color: "#ffc107" }}>
+          <Subtitle style={{ color: "#ED958B" }}>
             There's no download options yet.
           </Subtitle>
         )}
@@ -80,7 +80,7 @@ const Container = styled.div`
   width: ${(props) => (props.width ? props.width : "100%")};
   padding: 1rem;
   border-radius: 5px;
-  background-color: #ffc107;
+  background-color: #ED958B;
   color: #141414;
   height: 350px;
   position: relative;
@@ -139,7 +139,7 @@ const Download = styled.div`
   top: ${(props) => (props.open ? 0 : "100%")};
   left: 0;
   background: #141414;
-  color: #ffc107;
+  color: #ED958B;
   border: 1px solid white;
   transition: all 150ms ease-out;
   opacity: ${(props) => (props.open ? 1 : 0)};
@@ -152,7 +152,7 @@ const Downloads = styled.div``;
 const Link = styled.a`
   display: flex;
   align-items: center;
-  color: #ffc107;
+  color: #ED958B;
   font-weight: 900;
 `;
 
@@ -179,5 +179,5 @@ const Menu = styled.div`
   display: flex;
   margin-left: 0.7rem;
   z-index: 1;
-  color: ${(props) => (props.light ? "#ffc107" : "#141414")};
+  color: ${(props) => (props.light ? "#ED958B" : "#141414")};
 `;

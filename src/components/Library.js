@@ -57,11 +57,15 @@ export default function Library() {
 
 const Container = styled.div``;
 
-const Title = styled.h1`  margin-top: 1rem;
+const Title = styled.h1`
+  margin-top: 1rem;
+  color: #ED958B;
   font-size: 1.5rem;
-`;
-
-const Subtitle = styled.h2`  margin-top: 0.5rem;
+  `;
+  
+  const Subtitle = styled.h2`  
+  margin-top: 0.5rem;
+  color: #ED958B;
   font-size: 1.2rem;
 `;
 

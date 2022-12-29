@@ -17,19 +17,19 @@ export default function Endpoint({
 
   return (
     <Container>
-      <Hightlight>
+      <Highlight>
         {isOpen ? (
           <AiFillCaretDown onClick={() => setIsOpen(!isOpen)} />
         ) : (
           <AiFillCaretRight onClick={() => setIsOpen(!isOpen)} />
         )}
         {name}
-      </Hightlight>
+      </Highlight>
       <Append isOpen={isOpen}>
         <Line>
           <Tag>{description}</Tag>
         </Line>
-        <Hightlight>Parameters</Hightlight>
+        <Highlight>Parameters</Highlight>
         <Parameters>
           {parameters.map((parameter, key) => {
             return (
@@ -38,9 +38,9 @@ export default function Endpoint({
               </Parameter>
             );
           })}
-          {parameters.length === 0 && <Text>No parameters available.</Text>}
+          {parameters.length === 0 && <Text style={{ color: "#ED958B" }}>No parameters available.</Text>}
         </Parameters>
-        <Hightlight>Basically...</Hightlight>
+        <Highlight>Basically...</Highlight>
         <Code>{code}</Code>
         {typeof request !== "undefined" ? (
           <>
@@ -73,7 +73,9 @@ const Container = styled.li`
   font-weight: 900;
 `;
 
-const Title = styled.h1`  margin-top: 1rem;
+const Title = styled.h1`
+  margin-top: 1rem;
+  color: #ED958B;
   font-size: 1.5rem;
 `;
 
@@ -94,8 +96,8 @@ const Append = styled.div`
 `;
 
 const Tag = styled.div`
-  background-color: #40565e;
-  color: white;
+  background-color: #8CE3ED;
+  color: #141414;
   padding: 0.5rem;
   border-radius: 7px;
   font-weight: 500;
@@ -108,8 +110,8 @@ const Line = styled.div`
 
 const Code = styled.pre`
   font-family: "IBM Plex Mono", monospace;
-  background-color: #141414;
-  color: white;
+  background-color: #8CE3ED;
+  color: #141414;
   border-radius: 5px;
   font-size: 1rem;
   font-weight: 500;
@@ -129,8 +131,8 @@ const Button = styled.button`
   margin-top: 1rem;
   padding: 0.5rem;
   border: none;
-  background-color: ${(props) => (props.disabled ? "#40565e" : "#141414")};
-  color: white;
+  background-color: ${(props) => (props.disabled ? "#ED958Ba1" : "#ED958B")};
+  color: #141414;
   font-family: "IBM Plex Mono";
   font-size: 1rem;
   text-decoration: none;
@@ -148,7 +150,7 @@ const Text = styled.p`
   margin-top: 0.5rem;
 `;
 
-const Hightlight = styled(Title)`
+const Highlight = styled(Title)`
   display: flex;
   align-items: center;
   margin-top: 1rem;

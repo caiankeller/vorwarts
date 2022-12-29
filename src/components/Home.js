@@ -60,13 +60,15 @@ const Logo = styled.div`
 const Title = styled.h1`
   font-size: 3rem;
   font-weight: 900;
-
+  color: #ED958B;
+  
   @media only screen and (max-width: 550px) {
     font-size: 2.5rem;
   }
-`;
-
-const Text = styled.p`
+  `;
+  
+  const Text = styled.p`
+  color: #ED958B;
   font-size: 1.2rem;
   padding: 0 0.5rem;
   text-align: justify;

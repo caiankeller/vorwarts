@@ -39,6 +39,7 @@ const Container = styled.div`
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+  background-color: #141414;
 
   overflow: scroll;
   -ms-overflow-style: none;

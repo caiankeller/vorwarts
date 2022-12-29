@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const Title = styled(Link)`
   font-size: 2rem;
-  color: #141414;
+  color: #ED958B;
   text-decoration: none;
   font-weight: 900;
 `;

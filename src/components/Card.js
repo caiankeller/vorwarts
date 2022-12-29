@@ -23,12 +23,13 @@ const Container = styled.div`
   justify-content: space-between;
   padding: 1rem;
   border-radius: 5px;
-  background-color: #141414;
-  color: white;
+  color: #141414;
   height: 350px;
   position: relative;
   overflow: hidden;
   width: 30vw;
+  background-color: #ED958B;
+
   @media only screen and (max-width: 540px) {
     width: 70vw;
   }
@@ -51,10 +52,10 @@ const Button = styled(Link)`
   margin-bottom: 1rem;
   padding: 0.5rem;
   border: none;
-  background-color: white;
+  background-color: #141414;
   border: ${(props) => props.noFill && "solid 1px #bde038"};
-  font-weight: 900;
-  color: #141414;
+  font-weight: 400;
+  color: #ED958B;
   font-family: Inconsolata;
   font-size: 1rem;
   text-decoration: none;

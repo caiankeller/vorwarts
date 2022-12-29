@@ -149,13 +149,13 @@ export default function Documentation() {
         <MdLightbulb style={{ marginRight: "0.5rem" }} />
         Use this link do make requests.
       </Note>
-      <Hightlight>Public endpoints</Hightlight>
+      <Highlight>Public endpoints</Highlight>
       <Endpoints>
         {publicEndpoints.map((endpoint, key) => {
           return <Endpoint {...endpoint} key={key} />;
         })}
       </Endpoints>
-      <Hightlight>Institucional endpoints</Hightlight>
+      <Highlight>Institucional endpoints</Highlight>
       <Endpoints>
         {privateEndpoints.map((endpoint, key) => {
           return <Endpoint {...endpoint} key={key} />;
@@ -169,15 +169,17 @@ const Container = styled.div``;
 
 const Title = styled.h1`
   margin-top: 1rem;
+  color: #ED958B;
   font-size: 1.5rem;
 `;
 
 const Subtitle = styled.h2`
   margin-top: 0.5rem;
+  color: #ED958B;
   font-size: 1.2rem;
 `;
 
-const Hightlight = styled(Title)`
+const Highlight = styled(Title)`
   margin-top: 1rem;
   font-size: 1.1rem;
 `;
@@ -186,13 +188,13 @@ const Warning = styled.p`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  background-color: #141414;
+  background-color: #ED958B;
   border-radius: 5px;
   font-size: 1rem;
   font-weight: 500;
   padding: 1rem;
   margin-top: 0.5rem;
-  color: white;
+  color: #141414;
 
   @media only screen and (max-width: 766px) {
     padding: 0.5rem;
@@ -206,6 +208,7 @@ const Text = styled.p`
   text-indent: 1rem;
   font-weight: 500;
   padding: 0.5rem 0;
+  color: #ED958B;
   text-align: justify;
   margin-top: 0.5rem;
 `;
@@ -214,8 +217,8 @@ const Note = styled(Text)`
   text-indent: 0;
   padding: 1rem;
   margin-top: 0.5rem;
-  background-color: #40565e;
-  color: white;
+  background-color: #8CE3ED;
+  color: #141414;
   font-style: italic;
   border-radius: 5px;
 

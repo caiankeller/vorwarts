@@ -102,6 +102,8 @@ const Container = styled.div`
 
 const Subtitle = styled.h2`
   margin-top: 0.5rem;
+  font-weight: 500;
+  color: #ED958B;
   font-size: 1.2rem;
 `;
 
@@ -127,9 +129,9 @@ const Button = styled.button`
   margin-top: 1rem;
   padding: 0.5rem;
   border: none;
-  background-color: #141414;
-  font-weight: 900;
-  color: white;
+  background-color: #ED958B;;
+  font-weight: 400;
+  color: #141414;
   font-family: Inconsolata;
   font-size: 1rem;
   text-decoration: none;

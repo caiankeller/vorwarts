@@ -102,8 +102,8 @@ const Option = styled.button`
   padding: 1rem;
   border-radius: 5px;
   font-weight: 900;
-  background-color: #141414;
-  color: white;
+  background-color: #ED958B;
+  color: #141414;
   min-height: 200px;
   height: auto;
   width: 200px;

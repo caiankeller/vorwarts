@@ -68,12 +68,12 @@ const Add = styled.button`
   font-weight: 900;
   color: #141414;
   min-height: 200px;
-  height: auto;
+  height: 350px;
   width: 150px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  background-color: white;
+  background-color: #8CE3ED;
   border: dashed 3px #141414;
 
   &:hover {
